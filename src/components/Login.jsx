@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaEnvelope, FaLock } from "react-icons/fa";
 import { useAuth } from "../context/AuthProvider";
+import { Loader } from "./Loader";
 
 export function LoginPage() {
   const navigate = useNavigate();
@@ -17,7 +18,6 @@ export function LoginPage() {
     const result = await login(email, password);
 
     if (result.success) {
-      alert("Login Successful!");
       navigate("/home");
     } else {
       setError(result.message);
@@ -55,7 +55,7 @@ export function LoginPage() {
             className="w-full bg-pink-500 text-white p-2 rounded-lg mt-4"
             disabled={loading}
           >
-            {loading ? "Logging in..." : "Login"}
+            {loading ? <Loader /> : "Login"}
           </button>
         </form>
         <p className="text-center text-gray-500 mt-4">
