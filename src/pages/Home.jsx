@@ -13,13 +13,30 @@ const Home = () => {
 
   return (
     <div className="flex flex-col items-center justify-center h-screen">
-      <h1 className="text-6xl font-bold">Helllo 😅</h1>
+      <h1 className="text-6xl text-black font-bold">Helllo 😅</h1>
       <button
         onClick={handleLogout}
         className="mt-6 px-6 py-3 bg-red-500 text-white rounded-lg shadow-md hover:bg-red-600"
       >
         Logout
       </button>
+      {/* <div className="flex">
+        <div>
+            <input type="text" className="bg-black"/>
+            <input type="text" className="bg-black"/>
+            <input type="text" className="bg-black"/>
+            <input type="text" className="bg-black"/>
+            <input type="text" className="bg-black"/>
+        </div>
+        <div>
+            <input type="text" className="bg-black"/>
+            <input type="text" className="bg-black"/>
+            <input type="text" className="bg-black"/>
+            <input type="text" className="bg-black"/>
+            <input type="text" className="bg-black"/>
+        </div>
+      </div>
+      <button className="text-red">submit</button> */}
     </div>
   );
 };
