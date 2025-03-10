@@ -1,15 +1,14 @@
 import { createContext, useContext, useState, useEffect } from "react";
+import { toast } from "react-toastify"; // Import toast for better messages
 
-// Create Auth Context
 const AuthContext = createContext();
 
-// AuthProvider Component
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(() => {
     try {
       return JSON.parse(localStorage.getItem("user")) || null;
     } catch (error) {
-      console.error("Error parsing localStorage user:", error);
+      console.error(" Error parsing localStorage user:", error);
       return null;
     }
   });
@@ -36,12 +35,14 @@ export const AuthProvider = ({ children }) => {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.message || "Invalid login credentials");
+        throw new Error(data.message || " Invalid login credentials");
       }
 
       setUser(data.user);
+      toast.success("✅ Login Successful!");
       return { success: true };
     } catch (error) {
+      toast.error(` ${error.message}`);
       return { success: false, message: error.message };
     } finally {
       setLoading(false);
@@ -54,18 +55,20 @@ export const AuthProvider = ({ children }) => {
       const response = await fetch("https://recommendation-system-7a8m.onrender.com/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(formData), // Sending confirmPassword too
       });
 
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.message || "Signup failed");
+        throw new Error(data.message || " Signup failed");
       }
 
       setUser(data.user);
+      toast.success("✅ Signup Successful!");
       return { success: true };
     } catch (error) {
+      toast.error(` ${error.message}`);
       return { success: false, message: error.message };
     } finally {
       setLoading(false);
@@ -75,6 +78,7 @@ export const AuthProvider = ({ children }) => {
   const logout = () => {
     setUser(null);
     localStorage.removeItem("user");
+    toast.info("🔔 Logged out successfully");
   };
 
   return (
@@ -84,5 +88,4 @@ export const AuthProvider = ({ children }) => {
   );
 };
 
-// Custom Hook to use AuthContext
 export const useAuth = () => useContext(AuthContext);
