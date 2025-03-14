@@ -1,28 +1,57 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaEnvelope, FaLock } from "react-icons/fa";
-import { useAuth } from "../context/AuthProvider";
+import { AuthContext } from "../context/AuthProvider";
 import { Loader } from "./Loader";
+import { toast } from "react-toastify"; 
 
 export function LoginPage() {
   const navigate = useNavigate();
-  const { login, loading } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const {setUser} = useContext(AuthContext)
 
   const handleLogin = async (e) => {
     e.preventDefault();
     setError("");
+    setLoading(true);
+    try {
+      const response = await fetch("https://recommendation-system-7a8m.onrender.com/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
 
-    const result = await login(email, password);
+      const data = await response.json();
 
-    if (result.success) {
-      navigate("/home");
-    } else {
-      setError(result.message);
+      if (!response.ok) {
+        throw new Error(data.message || " Invalid login credentials");
+      }
+
+      // setUser(data.user);
+      setUser(data.existingUser)
+      toast.success("✅ Login Successful!");
+      localStorage.setItem("token", data.token ) //store user token
+      navigate("/")
+      // return { success: true };
+    } catch (error) {
+      toast.error(` ${error.message}`);
+      return { success: false, message: error.message };
+    } finally {
+      setLoading(false);
     }
+
+
+    // if (result.success) {
+    //   navigate("/home");
+    // } else {
+    //   setError(result.message);
+    // }
   };
+
+   
 
   return (
     <div className="flex h-screen items-center justify-center bg-pink-100 p-4">

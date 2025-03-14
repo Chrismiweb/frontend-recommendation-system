@@ -1,14 +1,16 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaUser, FaEnvelope, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
-import { useAuth } from "../context/AuthProvider";
+import { AuthContext } from "../context/AuthProvider";
 import { Loader } from "./Loader";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export function SignUpPage() {
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const { signup, loading } = useAuth();
+  // const { signup, loading } = useAuth();
+  const {setUser} = useContext(AuthContext)
 
   const [formData, setFormData] = useState({
     firstName: "",
@@ -28,20 +30,39 @@ export function SignUpPage() {
 
   const handleSignUp = async (e) => {
     e.preventDefault();
+    if(!formData.email || !formData.firstName || !formData.lastName || !formData.userName || !formData.password || !formData.confirmPassword ){
+     return toast.error("❌ please fill all credential to signup");
 
+    }
     if (formData.password !== formData.confirmPassword) {
       toast.error("❌ Passwords do not match!");
       return;
     }
+    setLoading(true);
+        try {
+          const response = await fetch("https://recommendation-system-7a8m.onrender.com/register", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(formData), // Sending confirmPassword too
+          });
+    
+          const data = await response.json();
+    
+          if (!response.ok) {
+           return toast.error(data.error);
+          }
+    
+          setUser(data.user);
+          toast.success("✅ Signup Successful!");
+          navigate("/login");
+          return { success: true };
+        } catch (error) {
+          toast.error(` ${error.message}`);
+          return { success: false, message: error.message };
+        } finally {
+          setLoading(false);
+        }
 
-    const result = await signup(formData);
-
-    if (result.success) {
-      toast.success("✅ Signup Successful!");
-      navigate("/");
-    } else {
-      toast.error(`❌ ${result.message}`);
-    }
   };
 
   return (
