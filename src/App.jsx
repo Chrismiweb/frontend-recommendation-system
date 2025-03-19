@@ -7,6 +7,7 @@ import LoginTest from "./components/LoginTest";
 import HomeTest from "./pages/HomeTest";
 import UserAuth from "./context/UserAuth";
 import AuthProvider from "./context/AuthProvider";
+import LandingPage from "./pages/LandingPage";
 
 export default function App() {
   return (
@@ -17,7 +18,9 @@ export default function App() {
       <Routes>
         <Route path="/home" element={<Home />} />
         {/* <Route path="/home" element={<HomeTest />} /> */}
-        <Route path="/" element={<LoginPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/" element={<LandingPage />} />
+
         <Route path="/signup" element={<SignUpPage />} />
         {/* <Route path="/login" element={<LoginTest />} /> */}
 
