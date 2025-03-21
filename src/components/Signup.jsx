@@ -4,6 +4,8 @@ import { FaUser, FaEnvelope, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
 import { AuthContext } from "../context/AuthProvider";
 import { Loader } from "./Loader";
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
+import { Button } from "antd";
 import "react-toastify/dist/ReactToastify.css";
 
 export function SignUpPage() {
@@ -49,7 +51,7 @@ export function SignUpPage() {
           const data = await response.json();
     
           if (!response.ok) {
-           return toast.error(data.error);
+           return toast.error("unable to signup, try again");
           }
     
           setUser(data.user);
@@ -66,11 +68,21 @@ export function SignUpPage() {
   };
 
   return (
-    <div className="flex h-screen items-center justify-center bg-pink-100 p-4">
-      <div className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md">
-        <h2 className="text-pink-500 text-2xl font-bold text-center">Sign Up</h2>
+    <div className="flex  flex-col items-center justify-center bg-pink-100 pb-4">
+      <div className='w-[100%] flex justify-between  px-[20px] py-[15px] items-center bg-transparent'>
+            <Link to="/"><p className='text-pink-600 font-semibold text-[14px] w-[50%] md:w-[100%] md:text-[22px] lg:text-[18px] font-serif'>Career Recommendation System</p></Link>
+            <div className='flex gap-[20px]'>
+            <Link to = "/login">
+                <Button color="pink" variant="solid">
+                    Log In
+                </Button>
+            </Link>
+            </div>
 
-        <form className="mt-4" onSubmit={handleSignUp}>
+        </div>
+      <div className="bg-white my-[50px] p-8 rounded-2xl mb-[500px] lg:mb-[100px] shadow-lg md:w-[65%] w-[90%] lg:w-[35%]">
+        <h2 className="text-pink-500 text-[20px] font-bold text-center">Sign Up</h2>
+        <form className="" onSubmit={handleSignUp}>
           {["firstName", "lastName", "userName", "email"].map((name, index) => (
             <div key={index} className="flex items-center border-b border-pink-300 py-2 mt-4">
               <span className="text-pink-500 mr-2">
@@ -128,7 +140,7 @@ export function SignUpPage() {
         </form>
 
         <p className="text-center text-gray-500 mt-4">
-          Already have an account? <a href="/" className="text-pink-500">Login</a>
+          Already have an account? <Link to ="/login" className="text-pink-500">Login</Link>
         </p>
       </div>
     </div>

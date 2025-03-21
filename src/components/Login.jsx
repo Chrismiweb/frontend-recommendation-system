@@ -4,6 +4,8 @@ import { FaEnvelope, FaLock } from "react-icons/fa";
 import { AuthContext } from "../context/AuthProvider";
 import { Loader } from "./Loader";
 import { toast } from "react-toastify"; 
+import { Link } from "react-router-dom";
+import { Button } from "antd";
 
 export function LoginPage() {
   const navigate = useNavigate();
@@ -54,8 +56,18 @@ export function LoginPage() {
    
 
   return (
-    <div className="flex h-screen items-center justify-center bg-pink-100 p-4">
-      <div className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md">
+    <div className="flex h-screen items-center flex-col bg-pink-100 p-4">
+       <div className='w-[100%] flex justify-between  px-[20px] py-[15px] items-center bg-transparent'>
+            <Link to="/"><p className='text-pink-600 font-semibold text-[14px] w-[50%] md:w-[100%] md:text-[22px] lg:text-[18px] font-serif'>Career Recommendation System</p></Link>          
+            <div className='flex gap-[20px]'>
+            <Link to='/signup'>
+                <Button color="pink" variant="filled">
+                    Sign Up
+                </Button>
+            </Link>
+            </div>
+        </div>
+      <div className="bg-white p-8 mt-[50px] rounded-2xl shadow-lg w-full max-w-md">
         <h2 className="text-pink-500 text-2xl font-bold text-center">Login</h2>
         {error && <p className="text-red-500 text-center mt-2">{error}</p>}
 
@@ -88,7 +100,7 @@ export function LoginPage() {
           </button>
         </form>
         <p className="text-center text-gray-500 mt-4">
-                    Don't have an account? <a href="/signup" className="text-pink-500">Sign Up</a>
+                    Don't have an account? <Link to ="/signup" className="text-pink-500">Sign Up</Link>
                 </p>
       </div>
     </div>
