@@ -1,7 +1,11 @@
 import React, { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../context/AuthProvider";
 import axios from 'axios';
-
+import { GiAchievement } from "react-icons/gi";
+import { CiCirclePlus } from "react-icons/ci";
+import { MdDeleteOutline } from "react-icons/md";
+import { FaFileAlt } from "react-icons/fa";
+import { Button } from "antd";
 
 const Home = () => {
   const [subjects, setSubjects] = useState(["", "", "", "", ""]);
@@ -176,6 +180,62 @@ const Home = () => {
             <pre className="whitespace-pre-wrap">{result}</pre>
           </div>
         )}
+      </div>
+      <div className="bg-pink-100 gap-[30px] flex justify-center items-center flex-col w-[100%]">
+        <div className="w-[100%] flex flex-col justify-center items-center">
+          <h1 className="text-pink-500 font-bold text-[50px]">Enter Your Results</h1>
+          <p className="text-pink-700 text-[20px]">Record Your Academic Achievement</p>
+        </div>
+        <div className="w-[60%] rounded-2xl  drop-shadow-xl bg-white">
+          <div className="w-[100%] h-[8px] rounded-t-2xl bg-pink-500"></div>
+          <div className="flex w-[100%] flex-col gap-[30px] p-[30px]">
+              <div className="flex w-[100%]  justify-between">
+                  <div className="flex gap-[15px] justify-center items-center">
+                    <GiAchievement className="text-pink-500 text-[22px]"/>
+                    <p className="text-black text-[22px] font-bold">Your Subjects</p>
+                  </div>
+                  <div className="flex gap-[5px] bg-white cursor-pointer shadow-md rounded-2xl p-[15px] font-semibold justify-center items-center">
+                    <CiCirclePlus className="text-pink-500 text-[22px]"/>
+                    <p>Add Subject</p>
+                  </div>
+              </div>
+              <div className="w-[100%] flex flex-col drop-shadow-xl gap-[20px] p-[20px]">
+                  <div className="w-[100%] justify-center items-center gap-[30px] flex">
+                    <select className="inset-shadow-2xs bg-gray-100 w-[40%] cursor-pointer rounded-2xl p-[15px] " name="" id="">
+                      <option className="text-[15px] font-semibold" value="">Select Subject</option>
+                      <option className="text-[15px]" value="">English Language</option>
+                      <option className="text-[15px]" value="">English Language</option>
+                      <option className="text-[15px]" value="">English Language</option>
+                      <option className="text-[15px]" value="">English Language</option>
+                      <option className="text-[15px]" value="">English Language</option>
+                      <option className="text-[15px]" value="">English Language</option>
+                      <option className="text-[15px]" value="">English Language</option>
+                    </select>
+                    <select className="inset-shadow-2xs bg-gray-100 w-[40%] cursor-pointer rounded-2xl p-[15px] " name="" id="">
+                      <option className="text-[15px] font-semibold" value="">Select Grade</option>
+                      <option className="text-[15px]" value="">A1</option>
+                      <option className="text-[15px]" value="">B2</option>
+                      <option className="text-[15px]" value="">B3</option>
+                      <option className="text-[15px]" value="">C4</option>
+                      <option className="text-[15px]" value="">C5</option>
+                      <option className="text-[15px]" value="">C6</option>
+                      <option className="text-[15px]" value="">D7</option>
+                      <option className="text-[15px]" value="">E8</option>
+                      <option className="text-[15px]" value="">F9</option>
+                    </select>
+                    <div>
+                        <MdDeleteOutline className="text-red-500 text-[20px] font-bold cursor-pointer"/>
+                    </div>
+                  </div>
+              </div>
+              <Button color="pink" variant="solid" className="bg-pink-500 w-[100%] items-center flex justify-center gap-[12px] p-[10px] rounded-2xl">
+                <FaFileAlt className="text-white font-bold"/>
+                <p className="text-white font-bold ">Submit Results</p>
+              </Button>
+          </div>
+
+        </div>
+
       </div>
     </div>
   );

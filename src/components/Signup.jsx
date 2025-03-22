@@ -51,7 +51,7 @@ export function SignUpPage() {
           const data = await response.json();
     
           if (!response.ok) {
-           return toast.error("unable to signup, try again");
+           return toast.error("unable to signup, try again");  
           }
     
           setUser(data.user);
