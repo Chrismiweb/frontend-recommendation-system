@@ -6,6 +6,8 @@ import { CiCirclePlus } from "react-icons/ci";
 import { MdDeleteOutline } from "react-icons/md";
 import { FaFileAlt } from "react-icons/fa";
 import { Button } from "antd";
+import { TbWorld } from "react-icons/tb";
+import { MdOutlineUploadFile } from "react-icons/md";
 
 const Home = () => {
   const [subjects, setSubjects] = useState(["", "", "", "", ""]);
@@ -56,13 +58,14 @@ const Home = () => {
   const handleFileChange = (e)=>{
     setSampleFile(e.target.files[0])
   }
+
   // Fetch recommendations
   const fetchRecommendations = async () => {
     if (cooldown) {
       setError("You've exceeded your daily limit. Please try again later.");
       return;
     }
-
+    
     setLoading(true);
     setError("");
     setResult("");
@@ -181,6 +184,12 @@ const Home = () => {
           </div>
         )}
       </div>
+
+
+
+
+
+
       <div className="bg-pink-100 gap-[30px] flex justify-center items-center flex-col w-[100%]">
         <div className="w-[100%] flex flex-col justify-center items-center">
           <h1 className="text-pink-500 font-bold text-[50px]">Enter Your Results</h1>
@@ -194,9 +203,15 @@ const Home = () => {
                     <GiAchievement className="text-pink-500 text-[22px]"/>
                     <p className="text-black text-[22px] font-bold">Your Subjects</p>
                   </div>
-                  <div className="flex gap-[5px] bg-white cursor-pointer shadow-md rounded-2xl p-[15px] font-semibold justify-center items-center">
-                    <CiCirclePlus className="text-pink-500 text-[22px]"/>
-                    <p>Add Subject</p>
+                  <div className="flex gap-[30px]">
+                      <div className="flex gap-[5px] bg-white cursor-pointer shadow-md rounded-2xl p-[15px] font-semibold justify-center items-center">
+                        <TbWorld className="text-pink-500 text-[22px]"/>
+                        <p>Add Regions</p>
+                      </div>
+                      <div className="flex gap-[5px] bg-white cursor-pointer shadow-md rounded-2xl p-[15px] font-semibold justify-center items-center">
+                        <CiCirclePlus className="text-pink-500 text-[22px]"/>
+                        <p>Add Subject</p>
+                      </div>
                   </div>
               </div>
               <div className="w-[100%] flex flex-col drop-shadow-xl gap-[20px] p-[20px]">
@@ -228,10 +243,29 @@ const Home = () => {
                     </div>
                   </div>
               </div>
+              <div className="w-[100%] flex flex-col justify-center items-center">
+                  <p className="text-[20px] font-bold mb-[30px]">OR</p>
+                  <div className="w-full  max-w-md mx-auto">
+                      <label
+                        htmlFor="fileUpload"
+                        className="flex gap-[10px] items-center justify-center w-full py-[10px] border border-dashed border-gray-400 rounded-md cursor-pointer bg-white hover:border-pink-500 transition duration-200"
+                      >
+                        <MdOutlineUploadFile className="text-[20px]"/>
+                        <span className="text-gray-500">Choose File</span>
+                      </label>
+                      <input
+                        id="fileUpload"
+                        type="file"
+                        className="hidden"
+                      />
+                  </div>
+                  
+              </div>
               <Button color="pink" variant="solid" className="bg-pink-500 w-[100%] items-center flex justify-center gap-[12px] p-[10px] rounded-2xl">
                 <FaFileAlt className="text-white font-bold"/>
                 <p className="text-white font-bold ">Submit Results</p>
               </Button>
+              
           </div>
 
         </div>
