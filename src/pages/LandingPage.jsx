@@ -61,7 +61,6 @@ function LandingPage() {
         <div className='w-[100%] text-center mt-[70px]  md:mt-[400px] lg:mt-[40px] bg-pink-100 flex justify-center items-center py-[10px]'>
             <p>©{date} Career Recommendation System. All rights reserved. Designed By Bitero Chrismi David</p>
         </div>
-      
     </div>
   )
 }
