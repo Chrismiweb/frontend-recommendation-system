@@ -89,7 +89,7 @@ const Home = () => {
     }
 
     try {
-      const response = await axios.post("http://localhost:1050/recommendation", formData, {
+      const response = await axios.post("https://recommendation-system-7a8m.onrender.com/recommendation", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
 
