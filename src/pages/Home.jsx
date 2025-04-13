@@ -8,6 +8,7 @@ import { FaFileAlt } from "react-icons/fa";
 import { Button } from "antd";
 import { TbWorld } from "react-icons/tb";
 import { MdOutlineUploadFile } from "react-icons/md";
+import { ToastContainer, toast } from 'react-toastify';
 
 const Home = () => {
   const [subjects, setSubjects] = useState([""]); // array of subject strings
@@ -63,15 +64,20 @@ const Home = () => {
 
   // Fetch recommendations
   const fetchRecommendations = async () => {
+   
+
     if (cooldown) {
       setError("You've exceeded your daily limit. Please try again later.");
       return;
     }
     
-    setLoading(true);
     setError("");
     setResult("");
+    if(!subjects || !grades || !region){
+     return toast.error("Please input subjects, grades and region")
+    }
 
+    setLoading(true);
 
 
     const formData = new FormData()
@@ -104,6 +110,7 @@ const Home = () => {
 
       // const data = await response.json();
       setResult(response.data.recommendations);
+      setLoading(true)
     } catch (err) {
       setError(err.message);
     } finally {
@@ -131,25 +138,26 @@ const Home = () => {
   
  
   return (
-    <div className="flex flex-col w-[100%] items-center justify-center min-h-screen bg-gray-100">
-     <h1 className="text-3xl font-semibold mb-6">Welcome {user?.userName || "Guest"}</h1>
+    <div className="flex flex-col w-[100%] items-center  min-h-screen bg-pink-100">
+      <ToastContainer/>
+     
 
-
-
-      <h1 className="text-3xl font-bold mb-6">Course Recommendation System 🎓</h1>
-
-      <div className="bg-pink-100 gap-[30px] flex justify-center items-center flex-col w-[100%]">
+      <div className=" gap-[30px] flex justify-center pb-[50px] items-center flex-col w-[100%]">
+        <div className="justify-between px-[10px] md:px-[40px] py-[20px] w-[100%] items-center flex bg-pink-200">
+          <p className='text-pink-600 w-[40%] md:w-[55%] font-semibold text-[14px] md:text-[22px] lg:text-[18px] font-serif'>Career Recommendation System 🎓</p>
+          <p className="text-[14px] md:text-[22px] lg:text-[18px]  text-pink-600 font-semibold font-serif">Welcome {user?.userName || "Guest"}</p>
+        </div>
         <div className="w-[100%] flex flex-col justify-center items-center">
-          <h1 className="text-pink-500 font-bold text-[50px]">Enter Your Results</h1>
+          <h1 className="text-pink-500 text-center font-bold text-[30px] md:text-[50px]">Enter Your Results</h1>
           <p className="text-pink-700 text-[20px]">Record Your Academic Achievement</p>
         </div>
-        <div className="w-[60%] rounded-2xl  drop-shadow-xl bg-white">
+        <div className="w-[95%] md:w-[80%]  lg:w-[60%] rounded-2xl  drop-shadow-xl bg-white">
           <div className="w-[100%] h-[8px] rounded-t-2xl bg-pink-500"></div>
-          <div className="flex w-[100%] flex-col gap-[30px] p-[30px]">
+          <div className="flex w-[100%] flex-col gap-[30px] p-[10px] md:p-[30px]">
               <div className="flex w-[100%]  justify-between">
                   <div className="flex gap-[15px] justify-center items-center">
                     <GiAchievement className="text-pink-500 text-[22px]"/>
-                    <p className="text-black text-[22px] font-bold">Your Subjects</p>
+                    <p className="text-black text-[15px] md:text-[22px] font-bold">Your Subjects</p>
                   </div>
                   <div className="flex gap-[30px]">
                       {/* <div className="flex gap-[5px] bg-white cursor-pointer shadow-md rounded-2xl p-[15px] font-semibold justify-center items-center">
@@ -172,7 +180,7 @@ const Home = () => {
                     <select
                       value={region}
                       onChange={(e) => setRegion(e.target.value)}
-                      className="inset-shadow-2xs bg-gray-100 w-[40%] cursor-pointer rounded-2xl p-[15px]"
+                      className="inset-shadow-2xs bg-gray-100 w-[60%] md:w-[40%] cursor-pointer rounded-2xl p-[15px]"
                     >
                       <option value="" className="text-[15px] font-semibold">Select Region</option>
                       <option value="North Central">North Central</option>
@@ -190,11 +198,11 @@ const Home = () => {
            
 
             {/* Subject and Grade section */}
-            <div className="w-full flex flex-col gap-[20px]">
+            <div className="w-full flex flex-col gap-[20px] md:gap-[20px]">
                   {subjects.map((subject, index) => (
-                <div key={subject.id} className="w-full flex justify-center items-center gap-[30px]">
+                <div key={subject.id} className="w-full flex justify-center items-center gap-[10px] md:gap-[30px]">
                       {/* Subject Select */}
-                      <div className="w-[40%]">
+                      <div className="w-[45%] md:w-[40%]">
                         <select
                           value={subject.subject || ""}
                           onChange={(e) => handleSubjectChange(index, e.target.value)}
@@ -212,7 +220,7 @@ const Home = () => {
                       </div>
 
                       {/* Grade Select */}
-                      <div className="w-[40%]">
+                      <div className="w-[45%] md:w-[40%]">
                         <select
                           // value={subject.grade || ""}
                           value={grades[index]}
@@ -234,7 +242,7 @@ const Home = () => {
 
                       {/* Delete Button */}
                       <div onClick={() => handleRemoveSubject(subject.id)}>
-                        <MdDeleteOutline className="text-red-500 text-[20px] font-bold cursor-pointer" />
+                        <MdDeleteOutline className="text-red-500 text-[30px] md:text-[20px] font-bold cursor-pointer" />
                       </div>
                     </div>
                   ))}

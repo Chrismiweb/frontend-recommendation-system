@@ -20,7 +20,7 @@ export function LoginPage() {
     setError("");
     setLoading(true);
     try {
-      const response = await fetch("http://localhost:1050/login", {
+      const response = await fetch("https://recommendation-system-7a8m.onrender.com/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
