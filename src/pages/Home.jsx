@@ -11,7 +11,8 @@ import { MdOutlineUploadFile } from "react-icons/md";
 import { ToastContainer, toast } from 'react-toastify';
 
 const Home = () => {
-  const [subjects, setSubjects] = useState([""]); // array of subject strings
+  // const [subjects, setSubjects] = useState([""]); // array of subject strings
+  const [subjects, setSubjects] = useState([{ id: Date.now(), subject: "" }]);
   const [grades, setGrades] = useState([""]);     
   const [region, setRegion] = useState("");
   const [result, setResult] = useState("");

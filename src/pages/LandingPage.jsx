@@ -35,7 +35,7 @@ function LandingPage() {
                 </div>
                 <div className='w-[100%] justify-center items-center flex flex-col'>
                     <p className='text-[25px] font-bold text-pink-600'>Topic:</p>
-                    <p className='text-[35px] md:text-[45px] lg:w-[80%] font-semibold text-center px-[100px]'>Web-based Career Recommendation System</p>
+                    <p className='text-[35px] md:text-[45px] lg:w-[80%] font-semibold text-center md:px-[100px]'>Web-based Career Recommendation System</p>
                 </div>
             </div>
             <div className='w-[90%] flex flex-col md:flex-row justify-center items-center gap-[20px]'>
