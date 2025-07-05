@@ -36,7 +36,7 @@ export function LoginPage() {
       setUser(data.existingUser)
       toast.success("✅ Login Successful!");
       localStorage.setItem("token", data.token ) //store user token
-      navigate("/home")
+      navigate("/dashboard")
       // return { success: true };
     } catch (error) {
       toast.error(` ${error.message}`);
@@ -56,53 +56,58 @@ export function LoginPage() {
    
 
   return (
-    <div className="flex h-screen items-center flex-col bg-pink-100 p-4">
-       <div className='w-[100%] flex justify-between  px-[20px] py-[15px] items-center bg-transparent'>
-            <Link to="/"><p className='text-pink-600 font-semibold text-[14px] w-[50%] md:w-[100%] md:text-[22px] lg:text-[18px] font-serif'>Career Recommendation System</p></Link>          
-            <div className='flex gap-[20px]'>
-            <Link to='/signup'>
-                <Button color="pink" variant="filled">
-                    Sign Up
-                </Button>
-            </Link>
-            </div>
+    <div className="flex h-screen w-full items-center flex-col">
+       <div className='w-[100%] flex justify-end absolute right-0 left-0  px-[50px] py-[30px] items-center bg-transparent'>
+          <Link to='/'>
+          <div className='flex justify-center items-center gap-[5px]'>
+              <div className='bg-[#2563EB] h-[32px] w-[32px] flex justify-center items-center text-[20px] rounded-[8px] font-bold text-white'>E</div>
+              <p className='text-[20px] font-black text-black'>EduPath</p>
+          </div>
+          </Link>
         </div>
-      <div className="bg-white p-8 mt-[50px] rounded-2xl shadow-lg w-full max-w-md">
-        <h2 className="text-pink-500 text-2xl font-bold text-center">Login</h2>
-        {error && <p className="text-red-500 text-center mt-2">{error}</p>}
+        <div className="bg-blue-800 w-full h-screen flex">
+          <div className="h-screen w-[50%]">
+              <img src="/image/study.jpg" className="w-full h-full object-cover brightness-50" alt="" />
+          </div>
+          <div className="bg-white w-[50%] h-screen px-[150px] flex flex-col justify-start items-start pt-[160px]">
+            <h2 className="text-[#2563EB] text-[42px] font-semibold text-center">Sign in to your account</h2>
+            <p className="text-center text-gray-500 mt-4 text-[20px]" >
+                  Don't have an account? <Link to ="/signup" className="text-[#2563EB] font-semibold">Sign Up</Link>
+            </p>
+            {error && <p className="text-red-500 text-center mt-2">{error}</p>}
 
-        <form className="mt-4" onSubmit={handleLogin}>
-          <div className="flex items-center border-b border-pink-300 py-2">
-            <FaEnvelope className="text-pink-500 mr-2" />
-            <input
-              type="email"
-              placeholder="Email"
-              className="w-full p-2 outline-none"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
+            <form className="w-[100%] mt-[50px] flex flex-col gap-[24px]" onSubmit={handleLogin}>
+              <div className="flex items-center border-b [#2563EB] py-2">
+                <FaEnvelope className="text-[#2563EB] mr-2" />
+                <input
+                  type="email"
+                  placeholder="Email"
+                  className="w-full p-2 outline-none"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </div>
+              <div className="flex items-center border-b border-[#2563EB] py-2 mt-4">
+                <FaLock className="text-[#2563EB] mr-2" />
+                <input
+                  type="password"
+                  placeholder="Password"
+                  className="w-full p-2 outline-none"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </div>
+              <button
+                className="w-full bg-[#2563EB] text-white py-[16px] rounded-lg mt-4"
+                disabled={loading}
+              >
+                {loading ? <Loader /> : "Login"}
+              </button>
+            </form>
+            
           </div>
-          <div className="flex items-center border-b border-pink-300 py-2 mt-4">
-            <FaLock className="text-pink-500 mr-2" />
-            <input
-              type="password"
-              placeholder="Password"
-              className="w-full p-2 outline-none"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
-          <button
-            className="w-full bg-pink-500 text-white p-2 rounded-lg mt-4"
-            disabled={loading}
-          >
-            {loading ? <Loader /> : "Login"}
-          </button>
-        </form>
-        <p className="text-center text-gray-500 mt-4">
-                    Don't have an account? <Link to ="/signup" className="text-pink-500">Sign Up</Link>
-                </p>
-      </div>
+        </div>
+        
     </div>
   );
 }

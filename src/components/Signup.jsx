@@ -68,80 +68,81 @@ export function SignUpPage() {
   };
 
   return (
-    <div className="flex  flex-col items-center justify-center bg-pink-100 pb-4">
-      <div className='w-[100%] flex justify-between  px-[20px] py-[15px] items-center bg-transparent'>
-            <Link to="/"><p className='text-pink-600 font-semibold text-[14px] w-[50%] md:w-[100%] md:text-[22px] lg:text-[18px] font-serif'>Career Recommendation System</p></Link>
-            <div className='flex gap-[20px]'>
-            <Link to = "/login">
-                <Button color="pink" variant="solid">
-                    Log In
-                </Button>
-            </Link>
-            </div>
-
-        </div>
-      <div className="bg-white my-[50px] p-8 rounded-2xl mb-[500px] lg:mb-[100px] shadow-lg md:w-[65%] w-[90%] lg:w-[35%]">
-        <h2 className="text-pink-500 text-[20px] font-bold text-center">Sign Up</h2>
-        <form className="" onSubmit={handleSignUp}>
-          {["firstName", "lastName", "userName", "email"].map((name, index) => (
-            <div key={index} className="flex items-center border-b border-pink-300 py-2 mt-4">
-              <span className="text-pink-500 mr-2">
-                {name === "email" ? <FaEnvelope /> : <FaUser />}
-              </span>
-              <input
-                type="text"
-                name={name}
-                placeholder={name.replace(/([A-Z])/g, " $1")}
-                className="w-full p-2 outline-none"
-                value={formData[name]}
-                onChange={handleChange}
-              />
-            </div>
-          ))}
-
-          {/* Password Field */}
-          <div className="flex items-center border-b border-pink-300 py-2 mt-4">
-            <span className="text-pink-500 mr-2">
-              <FaLock />
-            </span>
-            <input
-              type={showPassword ? "text" : "password"}
-              name="password"
-              placeholder="Password"
-              className="w-full p-2 outline-none"
-              value={formData.password}
-              onChange={handleChange}
-            />
-            <button type="button" onClick={() => setShowPassword(!showPassword)} className="ml-2 text-pink-500">
-              {showPassword ? <FaEyeSlash /> : <FaEye />}
-            </button>
+    <div className="flex h-screen w-full items-center flex-col">
+      <div className='w-[100%] flex justify-end absolute right-0 left-0  px-[50px] py-[30px] items-center bg-transparent'>
+          <Link to='/'>
+          <div className='flex justify-center items-center gap-[5px]'>
+              <div className='bg-[#2563EB] h-[32px] w-[32px] flex justify-center items-center text-[20px] rounded-[8px] font-bold text-white'>E</div>
+              <p className='text-[20px] font-black text-black'>EduPath</p>
           </div>
-
-          <div className="flex items-center border-b border-pink-300 py-2 mt-4">
-            <span className="text-pink-500 mr-2">
-              <FaLock />
-            </span>
-            <input
-              type={showConfirmPassword ? "text" : "password"}
-              name="confirmPassword"
-              placeholder="Confirm Password"
-              className="w-full p-2 outline-none"
-              value={formData.confirmPassword}
-              onChange={handleChange}
-            />
-            <button type="button" onClick={() => setShowConfirmPassword(!showConfirmPassword)} className="ml-2 text-pink-500">
-              {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
-            </button>
+          </Link>
+      </div>
+      <div className="w-full flex">
+          <div className="h-screen w-[50%]">
+              <img src="/image/study.jpg" className="w-full h-full object-cover brightness-50" alt="" />
           </div>
+          <div className="bg-white w-[50%] h-screen px-[150px] flex flex-col justify-start items-start pt-[100px]">
+            <h2 className="text-[#2563EB] text-[42px] font-semibold text-center">Sign in to your account</h2>
+            <p className="text-center text-gray-500 mt-4 text-[20px]" >
+                  Already have an account? <Link to ="/login" className="text-[#2563EB] font-semibold">Log in</Link>
+            </p>
+            <form className=" w-full mt-[20px] flex flex-col gap-[24px]" onSubmit={handleSignUp}>
+              {["firstName", "lastName", "userName", "email"].map((name, index) => (
+                <div key={index} className="flex items-center border-b border-[#2563EB] py-2 mt-4">
+                  <span className="text-[#2563EB] mr-2">
+                    {name === "email" ? <FaEnvelope /> : <FaUser />}
+                  </span>
+                  <input
+                    type="text"
+                    name={name}
+                    placeholder={name.replace(/([A-Z])/g, " $1")}
+                    className="w-full p-2 outline-none"
+                    value={formData[name]}
+                    onChange={handleChange}
+                  />
+                </div>
+              ))}
 
-          <button className="w-full bg-pink-500 text-white p-2 rounded-lg mt-4" disabled={loading}>
-            {loading ? <Loader /> : "Sign Up"}
-          </button>
-        </form>
+              {/* Password Field */}
+              <div className="flex items-center border-b border-[#2563EB] py-2 mt-4">
+                <span className="text-[#2563EB] mr-2">
+                  <FaLock />
+                </span>
+                <input
+                  type={showPassword ? "text" : "password"}
+                  name="password"
+                  placeholder="Password"
+                  className="w-full p-2 outline-none"
+                  value={formData.password}
+                  onChange={handleChange}
+                />
+                <button type="button" onClick={() => setShowPassword(!showPassword)} className="ml-2 text-[#2563EB]">
+                  {showPassword ? <FaEyeSlash /> : <FaEye />}
+                </button>
+              </div>
 
-        <p className="text-center text-gray-500 mt-4">
-          Already have an account? <Link to ="/login" className="text-pink-500">Login</Link>
-        </p>
+              <div className="flex items-center border-b border-pink-300 py-2 mt-4">
+                <span className="text-[#2563EB] mr-2">
+                  <FaLock />
+                </span>
+                <input
+                  type={showConfirmPassword ? "text" : "password"}
+                  name="confirmPassword"
+                  placeholder="Confirm Password"
+                  className="w-full p-2 outline-none"
+                  value={formData.confirmPassword}
+                  onChange={handleChange}
+                />
+                <button type="button" onClick={() => setShowConfirmPassword(!showConfirmPassword)} className="ml-2 text-[#2563EB]">
+                  {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
+                </button>
+              </div>
+
+              <button className="w-full bg-[#2563EB] text-white p-2 rounded-lg mt-4" disabled={loading}>
+                {loading ? <Loader /> : "Sign Up"}
+              </button>
+            </form>
+          </div>
       </div>
     </div>
   );
