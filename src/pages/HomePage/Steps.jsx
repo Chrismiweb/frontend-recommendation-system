@@ -25,6 +25,7 @@ function Steps() {
         <div className='w-[90vw] lg:w-[35vw] lg:h-[30vw] md:h-[60vw] h-[70vw] overflow-hidden rounded-[16px] shadow-lg'>
             <video
                 src="/video/howitworks.mp4"
+                    // /video/howitworks.mp4
                 className="w-full h-full object-fill"  
                 autoPlay
                 loop
