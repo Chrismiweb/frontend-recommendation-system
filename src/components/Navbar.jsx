@@ -9,16 +9,20 @@ function Navbar() {
   const {user, setUser} = useContext(AuthContext)  
   const location = useLocation(); // React Router hook
 
-    useEffect(() => {
-    // Always check localStorage when route changes
-    const username = localStorage.getItem('username');
-    if (username) {
-      setUser({ userName: username });
-    } else {
-      setUser(null);
-    }
-  }, [location.pathname]); // rerun when path changes
+  // useEffect(() => {
+  //   const username = localStorage.getItem('username');
+  //   if (username) {
+  //     setUser({ userName: username });
+  //   } else {
+  //     setUser(null);
+  //   }
+  // }, [location.pathname]); // rerun when path changes
 
+  const logout =()=>{
+    localStorage.removeItem("token")
+    localStorage.removeItem("username")
+    setUser(null)
+  }
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
@@ -45,10 +49,10 @@ function Navbar() {
                   <Link to='/dashboard'>
                     <button className='px-[24px] py-[8px] bg-[#2563EB] text-[1.1vw] rounded-full text-white cursor-pointer'>Start Assessment</button>
                   </Link>
+                  <button onClick={logout} className='px-[24px] py-[8px] bg-[#2563EB] text-[1.1vw] rounded-full text-white cursor-pointer'>Log Out</button>
                   <div className='text-[1.1vw]'>
                     {user.userName}
                   </div> 
-            
               </div>
               : 
               <div className='flex gap-[32px] items-center '>

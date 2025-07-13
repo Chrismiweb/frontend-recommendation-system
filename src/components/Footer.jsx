@@ -40,7 +40,7 @@ function Footer() {
         <div className='h-[1px] w-[100%] bg-[#9CA3AF]'></div>
 
         <div className='w-full flex justify-center items-center'>
-            <p className='text-[#9CA3AF] font-semibold text-[20px]'>© {date} EduPath. All rights reserved.</p>
+            <p className='text-[#9CA3AF] font-semibold lg:text-[1vw] md:text-[2.3vw] text-[4vw]'>© {date} EduPath. All rights reserved.</p>
         </div>
     </div>
   )

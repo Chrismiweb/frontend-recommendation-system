@@ -12,7 +12,7 @@ const Sidebar = () => {
     const navigate = useNavigate()
     const logout =()=>{
         localStorage.removeItem("token")
-        localStorage.removeItem("theUsername")
+        localStorage.removeItem("username")
         navigate('/login')
         setUser(null)
     }
