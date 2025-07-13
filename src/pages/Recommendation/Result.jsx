@@ -123,7 +123,7 @@ const handlePrevQuestion = () => {
     if (sampleFile) formData.append("sampleFile", sampleFile);
 
     try {
-      const res = await axios.post("http://localhost:1050/recommendation", formData);
+      const res = await axios.post("https://recommendation-system-7a8m.onrender.com/recommendation", formData);
       setResult(res.data.recommendations);
     } catch (err) {
       toast.error(err.message);
