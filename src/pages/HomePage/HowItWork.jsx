@@ -24,7 +24,7 @@ function HowItWork() {
         },
     ]
   return (
-    <div className='w-full flex flex-col items-center bg-[#F9FAFB] py-[30px] md:py-[40px] lg:py-[80px] gap-[40px] md:gap-[54] lg:gap-[64px]'>
+    <div  className='w-full flex flex-col items-center bg-[#F9FAFB] py-[30px] md:py-[40px] lg:py-[80px] gap-[40px] md:gap-[54] lg:gap-[64px]'>
         <p className='text-[7vw] md:text-[4vw] lg:text-[2.5vw] font-bold'>How it Works</p>
 
         <div className='flex flex-col lg:flex-row w-full justify-center items-center gap-[32px] '>

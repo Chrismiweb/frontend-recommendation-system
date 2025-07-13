@@ -53,28 +53,6 @@ const RecommendedCourses = () => {
         </div>
 
         <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 w-full gap-[16px] py-[30px] justify-between items-center'>
-          {/* {filteredCourses.map((r, index) => (
-            <div key={index} className='w-[95%] rounded-[20px] overflow-hidden pb-[25px] shadow-lg gap-[15px] flex flex-col'>
-              <div className='w-full h-[300px]'>
-                <img src={r.image} className='w-full h-full object-fill' alt="" />
-              </div>
-              <div className='px-[30px] gap-[20px] flex flex-col'>
-                <div className='flex flex-col gap-[8px]'>
-                  <p className='text-[20px] font-bold'>{r.title}</p>
-                  <p className='text-[#4B5563] text-[15px]'>{r.institution}</p>
-                </div>
-                <div className='w-full justify-between flex items-center'>
-                  <p className='text-[#4B5563]'>{r.duration}</p>
-                  <p
-                    onClick={() => setSelectedCourse(r)}
-                    className='cursor-pointer text-[#2563EB] font-bold text-[18px]'
-                  >
-                    {r.view}
-                  </p>
-                </div>
-              </div>
-            </div>
-          ))} */}
           {filteredCourses.length > 0 ? (
               filteredCourses.map((r, index) => (
                 <div key={index} className='w-[95%] rounded-[20px] overflow-hidden pb-[25px] shadow-lg gap-[15px] flex flex-col'>

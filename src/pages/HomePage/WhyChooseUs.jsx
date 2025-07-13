@@ -23,7 +23,7 @@ function WhyChooseUs() {
         },
     ]
   return (
-    <div className='w-full flex flex-col items-center bg-white py-[50px] md:py-[40px] lg:py-[80px] gap-[64px]'>
+    <div id='why-choose-us' className='w-full flex flex-col items-center bg-white py-[50px] md:py-[40px] lg:py-[80px] gap-[64px]'>
         <p className='text-[7vw] md:text-[4vw] lg:text-[2.5vw] font-bold'>Why Choose Us</p>
 
         <div className='flex flex-col lg:flex-row w-full justify-center items-center gap-[32px] '>

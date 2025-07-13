@@ -1,11 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { MdLocationOn } from "react-icons/md";
 import { BsCalendar4Event } from "react-icons/bs";
 import { FaCircleDot } from "react-icons/fa6";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../context/AuthProvider';
 
 function Dashboard() {
+ const {user} = useContext(AuthContext)
+
 
  const today = new Date();
   const formattedDate = today.toLocaleDateString('en-US', {
@@ -38,7 +41,7 @@ function Dashboard() {
   {
     "title": "Mechanical Engineering",
     "institution": "University of Benin",
-    "duration": "4 years",
+    "duration": "5 years",
     "image": "/image/mechanical_engr.jpg",
     "view": "View Details",
     "about": "Covers the design, analysis, and manufacturing of mechanical systems. Careers include automotive, aerospace, and energy industries. This course offers practical and theoretical knowledge to help students succeed in the field. This course offers practical and theoretical knowledge to help students succeed in the field. This course offers practical and theoretical knowledge to help students succeed in the field.",
@@ -56,7 +59,7 @@ function Dashboard() {
 const topInstitutions = [
   {
     rank: 1,
-    name: "Stanford University",
+    name: "University One",
     location: "Stanford, California",
     imageUrl: "/image/FRAME.png",
     explore: "Explore Institution",
@@ -65,7 +68,7 @@ const topInstitutions = [
   },
   {
     rank: 2,
-    name: "Massachusetts Institute of Technology",
+    name: "University Two",
     location: "Cambridge, Massachusetts",
     imageUrl: "/image/FRAME.png",
     explore: "Explore Institution",
@@ -75,7 +78,7 @@ const topInstitutions = [
   },
   {
     rank: 3,
-    name: "Harvard University",
+    name: "University Three",
     location: "Cambridge, Massachusetts",
     imageUrl: "/image/FRAME.png",
     explore: "Explore Institution", 
@@ -139,7 +142,7 @@ const event = [
     <div className='w-[100%] px-[50px] py-[30px] flex flex-col gap-[50px] bg-[#F3F4F6]'>
         <div className='flex justify-between items-center'>
             <div>
-                <p className='text-[30px] font-bold'>Welcome Back, Chrismi</p>
+                <p className='text-[30px] font-bold'>Welcome Back, {user && user.userName ? user.userName : "Guest"}</p>
                 <p className='text-[#4B5563] text-[15px] font-semibold'>{formattedDate}</p>
             </div>
             <Link to= '/career-recommendation'>
@@ -193,7 +196,7 @@ const event = [
                 <div>
                     <p className='text-[25px] font-bold'>Top Institutions for You</p>
                 </div>
-                <a href='#' className='text-[#2563EB] font-bold px-[20px] text-[20px] py-[15px] rounded-[10px] cursor-pointer'>View All {">"}</a>
+                <Link to='/explore-universities' className='text-[#2563EB] font-bold px-[20px] text-[20px] py-[15px] rounded-[10px] cursor-pointer'>View All {">"}</Link>
             </div>
             <div className='flex w-[100%] justify-between items-center'>
                 {topInstitutions.map((t, indexx)=>(

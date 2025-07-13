@@ -1,10 +1,23 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { FiX } from 'react-icons/fi'; // icons for toggle
 import { HiOutlineMenuAlt3 } from "react-icons/hi";
+import { AuthContext } from '../context/AuthProvider';
 
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const {user, setUser} = useContext(AuthContext)  
+  const location = useLocation(); // React Router hook
+
+    useEffect(() => {
+    // Always check localStorage when route changes
+    const username = localStorage.getItem('username');
+    if (username) {
+      setUser({ userName: username });
+    } else {
+      setUser(null);
+    }
+  }, [location.pathname]); // rerun when path changes
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -23,14 +36,29 @@ function Navbar() {
 
         {/* Desktop Menu */}
         <div className='hidden lg:flex gap-[32px] items-center'>
-          <Link to=''><p className='text-[1.1vw] '>How it works</p></Link>
-          <Link to=''><p className='text-[1.1vw]'>Why Us</p></Link>
-          <Link to=''><p className='text-[1.1vw]'>About</p></Link>
-          <Link to='/login'><p className='text-[1.1vw]'>Login</p></Link>
-          <Link to='/signup'><p className='text-[1.1vw]'>Register</p></Link>
-          <Link to=''>
-            <button className='px-[24px] py-[8px] bg-[#2563EB] text-[1.1vw] rounded-full text-white cursor-pointer'>Start Assessment</button>
-          </Link>
+          <a href='#how-it-works'><p className='text-[1.1vw] '>How it works</p></a>
+          <a href='#why-choose-us'><p className='text-[1.1vw]'>Why Us</p></a>
+          <a href='#about'><p className='text-[1.1vw]'>About</p></a>
+          {user && user.userName 
+              ? 
+              <div className='flex gap-[32px] items-center'>
+                  <Link to='/dashboard'>
+                    <button className='px-[24px] py-[8px] bg-[#2563EB] text-[1.1vw] rounded-full text-white cursor-pointer'>Start Assessment</button>
+                  </Link>
+                  <div className='text-[1.1vw]'>
+                    {user.userName}
+                  </div> 
+            
+              </div>
+              : 
+              <div className='flex gap-[32px] items-center '>
+                <Link to='/login'><p className='text-[1.1vw]'>Login</p></Link>
+                <Link to='/signup'>
+                   <button className='px-[24px] py-[8px] bg-[#2563EB] text-[1.1vw] rounded-full text-white cursor-pointer'>Register</button>
+                </Link>
+              </div>
+          }
+
         </div>
 
         {/* Mobile Menu Toggle Button */}

@@ -21,7 +21,7 @@ function Steps() {
         },
     ]
   return (
-    <div className='flex flex-col-reverse lg:flex-row w-full justify-center items-center gap-[50px] bg-[#F9FAFB] py-[40px] md:py-[60px] lg:py-[80px]'>
+    <div id='how-it-works' className='flex flex-col-reverse lg:flex-row w-full justify-center items-center gap-[50px] bg-[#F9FAFB] py-[40px] md:py-[60px] lg:py-[80px]'>
         <div className='w-[90vw] lg:w-[35vw] lg:h-[30vw] md:h-[60vw] h-[70vw] overflow-hidden rounded-[16px] shadow-lg'>
             <video
                 src="/video/howitworks.mp4"

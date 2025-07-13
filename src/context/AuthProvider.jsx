@@ -132,16 +132,18 @@ export const AuthContext = createContext();
 
 export default function AuthProvider({children}) {
   const [user, setUser] = useState(()=>{
-    const username = localStorage.getItem("")
-    return username ? {theUsername : username} : null 
+    const username = localStorage.getItem("username")
+    const token = localStorage.getItem("token");
+    // return username ? {theUsername : username} : null 
+    return username && token ? { userName: username, token } : null;
   })
  
   useEffect(()=>{
     if(user){
-      localStorage.setItem("theUsername", user.existingUser)
+      localStorage.setItem("username", user.userName)
     }
     else{
-      localStorage.removeItem("theUsername")
+      localStorage.removeItem("username")
     }
   }, [user])
 

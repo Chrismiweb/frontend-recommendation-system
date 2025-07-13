@@ -1,16 +1,27 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { FaUserGraduate } from "react-icons/fa6";
 import { FaHome } from "react-icons/fa";
 import { GiOpenBook } from "react-icons/gi";
 import { GiGraduateCap } from "react-icons/gi";
-import { Link } from 'react-router-dom'; // Import Link from react-router-dom
+import { IoLogOutSharp } from "react-icons/io5";
+import { Link, useNavigate } from 'react-router-dom'; // Import Link from react-router-dom
+import { AuthContext } from '../context/AuthProvider';
 
 const Sidebar = () => {
+    const {user, setUser} = useContext(AuthContext)
+    const navigate = useNavigate()
+    const logout =()=>{
+        localStorage.removeItem("token")
+        localStorage.removeItem("theUsername")
+        navigate('/login')
+        setUser(null)
+    }
     const items = [
         { icon: <FaHome />, label: 'Dashboard', link: '/dashboard' },
         { icon: <FaUserGraduate />, label: 'Career Recommendation', link: '/career-recommendation' },
         { icon: <GiOpenBook />, label: 'Explore Courses', link: '/explore-courses' },
         { icon: <GiGraduateCap />, label: 'Explore Universities', link: '/explore-universities' },
+
     ];
 
     return (
@@ -29,6 +40,14 @@ const Sidebar = () => {
                 ))}
             </div>
             <div className="flex-grow"></div>
+             <div className="space-y-6 cursor-pointer">
+                    <div onClick={logout} className="flex items-center space-x-3 px-2 hover:bg-[#17417B] rounded-md py-2 transition-all duration-200">
+                        <div className="text-white text-[40px]"><IoLogOutSharp /></div>
+                        <span className="text-[20px] font-medium whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            LOG OUT
+                        </span>
+                    </div>
+            </div>
         </div>
     );
 };

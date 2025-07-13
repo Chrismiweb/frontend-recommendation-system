@@ -5,7 +5,7 @@ import { FaTelegram } from "react-icons/fa";
 
 function Developer() {
   return (
-    <div className='flex flex-col justify-center items-center py-[40px] md:py-[80px] gap-[32px] bg-[#0D2B56]'>
+    <div id='about' className='flex flex-col justify-center items-center py-[40px] md:py-[80px] gap-[32px] bg-[#0D2B56]'>
         <p className='text-[7vw] md:text-[4vw] lg:text-[2.5vw] w-[80%] font-bold text-center  text-white'>Made by Student, for Nigerian Students</p>
         <div className='lg:w-[8vw] lg:h-[8vw] md:w-[15vw] md:h-[15vw] w-[25vw] h-[25vw] bg-amber-300 rounded-full overflow-hidden'>
             <img src="/image/me.JPG" className='w-full h-full object-fill' alt="" />

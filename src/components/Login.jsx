@@ -36,6 +36,7 @@ export function LoginPage() {
       setUser(data.existingUser)
       toast.success("✅ Login Successful!");
       localStorage.setItem("token", data.token ) //store user token
+      localStorage.setItem("username", data.existingUser.userName); // ✅ store username
       navigate("/dashboard")
       // return { success: true };
     } catch (error) {
@@ -44,13 +45,6 @@ export function LoginPage() {
     } finally {
       setLoading(false);
     }
-
-
-    // if (result.success) {
-    //   navigate("/home");
-    // } else {
-    //   setError(result.message);
-    // }
   };
 
    

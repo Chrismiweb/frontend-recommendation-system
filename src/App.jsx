@@ -13,6 +13,8 @@ import DashboardPage from "./pages/Dashboard/DashboardPage";
 import RecommendationPage from "./pages/Recommendation/RecommendationPage";
 import CoursePage from "./pages/Courses/CoursePage";
 import ResultPage from "./pages/Recommendation/ResultPage";
+import UniversityPage from "./pages/University/UniversityPage";
+import ProtectedRoute from "./protectedRoute/ProtectedRoute";
 
 export default function App() {
   return (
@@ -27,11 +29,17 @@ export default function App() {
         {/* <Route path="/" element={<LandingPage />} /> */}
         <Route path="/" element={<HomePage />} />
         <Route path="/navbar" element={<Navbar />} />
-        <Route path="/dashboard" element={<DashboardPage />} />
+        <Route path="/dashboard" element={
+          <ProtectedRoute>
+              <DashboardPage />
+          </ProtectedRoute>
+          } />
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/sidebar" element={<Sidebar />} />
         <Route path="/career-recommendation" element={<RecommendationPage />} />
         <Route path="/explore-courses" element={<CoursePage />} />
+        <Route path="/explore-universities" element={<UniversityPage />} />
+
 
         {/* <Route path="/login" element={<LoginTest />} /> */}
        
