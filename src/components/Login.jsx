@@ -31,7 +31,7 @@ export function LoginPage() {
       if (!response.ok) {
         throw new Error(data.message || " Invalid login credentials");
       }
-
+        // console.log(data)
       // setUser(data.user);
       setUser(data.existingUser)
       toast.success("✅ Login Successful!");
@@ -40,7 +40,7 @@ export function LoginPage() {
       navigate("/dashboard")
       // return { success: true };
     } catch (error) {
-      toast.error(` ${error.message}`);
+      toast.error(` ${"Unable to login, Check internet connection"}`);
       return { success: false, message: error.message };
     } finally {
       setLoading(false);
@@ -60,7 +60,7 @@ export function LoginPage() {
           </Link>
         </div>
         <div className="bg-blue-800 w-full h-screen flex">
-          <div className="h-screen w-[50%]">
+          <div className=" h-screen w-[50%]">
               <img src="/image/study.jpg" className="w-full h-full object-cover brightness-50" alt="" />
           </div>
           <div className="bg-white w-[50%] h-screen px-[150px] flex flex-col justify-start items-start pt-[160px]">

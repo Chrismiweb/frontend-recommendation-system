@@ -346,7 +346,7 @@ const handlePrevQuestion = () => {
       {result && (
         <div className="bg-gray-100 p-4 mt-6 rounded">
           <h2 className="text-lg font-bold mb-2">Recommended Courses:</h2>
-          <pre className="whitespace-pre-wrap text-[18px]">{result.replaceAll("*", "")}</pre>
+          <pre className="whitespace-pre-wrap font-sans text-[20px]">{result.replaceAll("*", "")}</pre>
         </div>
       )}
       {/* email sending  */}
