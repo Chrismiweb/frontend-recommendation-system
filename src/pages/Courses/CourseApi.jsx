@@ -1,5 +1,5 @@
 
-    const recommendedCourses = [
+   export const recommendedCourses = [
 {
     "title": "English",
     "institution": "Obafemi Awolowo University",

@@ -57,34 +57,36 @@ function Dashboard() {
 ];
 
 const topInstitutions = [
-  {
-    rank: 1,
-    name: "University One",
-    location: "Stanford, California",
-    imageUrl: "/image/FRAME.png",
-    explore: "Explore Institution",
-    icons: <MdLocationOn/>
+   {
+    institution: "University of Ilorin",
+    address: "Ilorin, Kwara State, Nigeria",
+    website: "https://www.unilorin.edu.ng",
+    image: "/image/unilorin.png",
+    explore: "Explore University",
+    icons: <MdLocationOn />,
+    link: "/explore-courses"
 
   },
   {
-    rank: 2,
-    name: "University Two",
-    location: "Cambridge, Massachusetts",
-    imageUrl: "/image/FRAME.png",
-    explore: "Explore Institution",
-    icons: <MdLocationOn/>
-
+    institution: "Obafemi Awolowo University",
+    address: "Ile-Ife, Osun State, Nigeria",
+    website: "https://www.oauife.edu.ng",
+    image: "/image/oau.png",
+    explore: "Explore University",
+    icons: <MdLocationOn />,
+    link: "/explore-courses"
 
   },
   {
-    rank: 3,
-    name: "University Three",
-    location: "Cambridge, Massachusetts",
-    imageUrl: "/image/FRAME.png",
-    explore: "Explore Institution", 
-    icons: <MdLocationOn/>
+    institution: "University of Lagos",
+    address: "Akoka, Yaba, Lagos State, Nigeria",
+    website: "https://unilag.edu.ng",
+    image: "/image/unilag.png",
+    explore: "Explore University",
+    icons: <MdLocationOn />,
+    link: "/explore-courses"
 
-  }
+  },
 ];
 
 
@@ -190,7 +192,7 @@ const event = [
          </div>
 
 
-         {/* upcoming Event */}
+         {/* university*/}
         <div className='flex flex-col gap-[10px]'>
             <div className='flex justify-between items-center'>
                 <div>
@@ -202,17 +204,20 @@ const event = [
                 {topInstitutions.map((t, indexx)=>(
                     <div key={indexx} className='w-[32%] rounded-[20px] overflow-hidden pb-[25px] shadow-lg gap-[15px] flex flex-col'>
                         <div className='w-[100%] h-[300px]'>
-                            <img src={t.imageUrl} className='w-full h-full object-fill' alt="" />
+                            <img src={t.image} className='w-full h-full object-fill' alt="" />
                         </div>
                         <div className='px-[30px] gap-[25px] flex flex-col'>
                             <div className='flex flex-col gap-[8px]'>
-                                <p className='text-[20px] font-bold'>{t.name}</p>
+                                <p className='text-[20px] font-bold'>{t.institution}</p>
                                 <div className='flex items-center gap-[10px]'>
                                     <p className='text-[#4B5563] text-[20px]'>{t.icons}</p>
-                                    <p className='text-[#4B5563] text-[15px]'>{t.location}</p>
+                                    <p className='text-[#4B5563] text-[15px]'>{t.address}</p>
                                 </div>
                             </div>
+                            <Link to={t.link}>
                             <button className=' w-[100%] border-[#2563EB] text-[#2563EB] hover:bg-[#2563EB] hover:text-white rounded-[10px] text-[20px] py-[10px] border-2 cursor-pointer'>{t.explore}</button>
+                            
+                            </Link>
                         </div>
 
                     </div>

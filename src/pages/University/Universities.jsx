@@ -28,6 +28,8 @@ const ExploreUniversities = () => {
             <div className='w-full px-[32px]'>
               <h2 className="text-[24px] font-bold">{selectedUniversity.institution}</h2>
               <p className="text-[#4B5563] text-[18px] mt-[20px]">{selectedUniversity.address}</p>
+              <p className="text-[#4B5563] text-[18px] mb-[30px] mt-[20px]">{selectedUniversity.about}</p>
+              <a className='mt-[20px] text-[19px] text-blue-500 font-bold' href={selectedUniversity.website}>Visit School Website</a>
             </div>
           </div>
         </div>
@@ -63,7 +65,7 @@ const ExploreUniversities = () => {
                         <p className='text-[#4B5563] text-[15px]'>{u.address}</p>
                     </div>
                   </div>
-                  <button onClick={setSelectedUniversity} className=' w-[100%] border-[#2563EB] text-[#2563EB] hover:bg-[#2563EB] hover:text-white rounded-[10px] text-[20px] py-[10px] border-2 cursor-pointer'>{u.button}</button>
+                  <button onClick={() => setSelectedUniversity(u)} className=' w-[100%] border-[#2563EB] text-[#2563EB] hover:bg-[#2563EB] hover:text-white rounded-[10px] text-[20px] py-[10px] border-2 cursor-pointer'>{u.button}</button>
                 </div>
               </div>
             ))
