@@ -23,9 +23,13 @@ function Dashboard() {
   });
 
 //   handle display sidebar
-    const handledisplaySidebar =()=>{
-        setShowSidebar(!showSidebar)
-    }
+        const handleDisplaySidebar = () => {
+            setShowSidebar(true); // open sidebar
+        };
+
+        const handleCloseSidebar = () => {
+            setShowSidebar(false); // close sidebar
+        };
 
    const recommendedCourses = [
 {
@@ -154,17 +158,16 @@ const event = [
                 <p className='md:text-[3.5vw] lg:text-[2vw] text-[5.5vw] font-bold'>Welcome Back, {user && user.userName ? user.userName : "Guest"}</p>
                 <p className='text-[#4B5563] md:text-[2vw] lg:text-[0.9vw] text-[3.5vw] font-semibold'>{formattedDate}</p>
             </div>
-            <button onClick={handledisplaySidebar} className='text-[9vw] md:text-[6vw]'>
-                {showSidebar ? <FiX/> : <HiOutlineMenuAlt3 />}
-            </button>
+            {!showSidebar && (
+                <button onClick={handleDisplaySidebar} className='text-[9vw] md:text-[6vw]'>
+                <HiOutlineMenuAlt3 />
+                </button>
+            )}
         </div>
-
-        {/* mobile sidebar */}
-        {showSidebar && 
-            <div>
-                <Sidebar/>
-            </div>
-                }
+        {/* Mobile sidebar */}
+            {showSidebar && (
+                <Sidebar onClose={handleCloseSidebar} />
+            )}
         <div className='flex flex-col md:flex-row justify-between md:items-center gap-[15px] md:gap-0'>
             <div className='hidden lg:flex lg:flex-col'>
                 <p className='md:text-[3.5vw] lg:text-[2vw] text-[5.5vw] font-bold'>Welcome Back, {user && user.userName ? user.userName : "Guest"}</p>
