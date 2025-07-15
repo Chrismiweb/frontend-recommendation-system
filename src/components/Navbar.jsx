@@ -67,8 +67,8 @@ function Navbar() {
 
         {/* Mobile Menu Toggle Button */}
         <div className='lg:hidden'>
-          <button onClick={toggleMenu}>
-            {menuOpen ? <FiX size={30} /> : <HiOutlineMenuAlt3 size={30} />}
+          <button onClick={toggleMenu} className='text-[9vw] md:text-[6vw]'>
+            {menuOpen ? <FiX/> : <HiOutlineMenuAlt3 />}
           </button>
         </div>
       </div>
@@ -79,11 +79,23 @@ function Navbar() {
           <Link to='' onClick={toggleMenu}><p className='text-[5vw] md:text-[3.5vw]'>How it works</p></Link>
           <Link to='' onClick={toggleMenu}><p className='text-[5vw] md:text-[3.5vw]'>Why Us</p></Link>
           <Link to='' onClick={toggleMenu}><p className='text-[5vw] md:text-[3.5vw]'>About</p></Link>
-          <Link to='/login' onClick={toggleMenu}><p className='text-[5vw] md:text-[3.5vw]'>Login</p></Link>
-          <Link to='/signup' onClick={toggleMenu}><p className='text-[5vw] md:text-[3.5vw]'>Register</p></Link>
-          <Link to='' onClick={toggleMenu}>
-            <button className='w-full px-[24px] py-[10px] bg-[#2563EB] rounded-full text-white font-semibold text-[5vw] md:text-[3.5vw]'>Start Assessment</button>
-          </Link>
+            {user && user.userName 
+              ? 
+              <div className='flex flex-col gap-[20px]'>
+                  <Link to='/dashboard'>
+                      <button className='w-full px-[24px] py-[10px] bg-[#2563EB] rounded-full text-white font-semibold text-[5vw] md:text-[3.5vw]'>Start Assessment</button>
+                  </Link>
+                  <button onClick={logout} className='px-[24px] py-[10px] bg-[#2563EB] text-[5vw] md:text-[3.5vw] font-semibold rounded-full text-white cursor-pointer'>Log Out</button>
+                  {/* <div className='text-[5vw]'>
+                    {user.userName}
+                  </div>  */}
+              </div>
+              : 
+              <div className='flex gap-[32px] items-center '>
+                <Link to='/login' onClick={toggleMenu}><p className='text-[5vw] md:text-[3.5vw]'>Login</p></Link>
+                <Link to='/signup' onClick={toggleMenu}><p className='text-[5vw] md:text-[3.5vw]'>Register</p></Link>
+              </div>
+          }
         </div>
       )}
     </div>

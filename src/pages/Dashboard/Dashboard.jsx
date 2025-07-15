@@ -1,13 +1,17 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { MdLocationOn } from "react-icons/md";
 import { BsCalendar4Event } from "react-icons/bs";
 import { FaCircleDot } from "react-icons/fa6";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { Link } from 'react-router-dom';
+import { FiX } from 'react-icons/fi'; // icons for toggle
+import { HiOutlineMenuAlt3 } from "react-icons/hi"
 import { AuthContext } from '../../context/AuthProvider';
+import Sidebar from '../../components/Sidebar';
 
 function Dashboard() {
  const {user} = useContext(AuthContext)
+ const [showSidebar, setShowSidebar] = useState(false)
 
 
  const today = new Date();
@@ -17,6 +21,11 @@ function Dashboard() {
     month: 'long',
     day: 'numeric',
   });
+
+//   handle display sidebar
+    const handledisplaySidebar =()=>{
+        setShowSidebar(!showSidebar)
+    }
 
    const recommendedCourses = [
 {
@@ -134,21 +143,35 @@ const event = [
     eventType: "Virtual Event", 
     eventIcons: <BsCalendar4Event/>,
     dot: <FaCircleDot/>
-
-
-
   }
 ];
 
   return (
-    <div className='w-[100%] px-[50px] py-[30px] flex flex-col gap-[50px] bg-[#F3F4F6]'>
-        <div className='flex justify-between items-center'>
+    <div className='w-[100%] px-[10px] md:px-[20px] lg:px-[50px] py-[30px] flex flex-col gap-[30px] lg:gap-[50px] bg-[#F3F4F6]'>
+        {/* Mobile Menu Toggle Button */}
+        <div className='lg:hidden w-full justify-between items-center flex'>
+            <div className=''>
+                <p className='md:text-[3.5vw] lg:text-[2vw] text-[5.5vw] font-bold'>Welcome Back, {user && user.userName ? user.userName : "Guest"}</p>
+                <p className='text-[#4B5563] md:text-[2vw] lg:text-[0.9vw] text-[3.5vw] font-semibold'>{formattedDate}</p>
+            </div>
+            <button onClick={handledisplaySidebar} className='text-[9vw] md:text-[6vw]'>
+                {showSidebar ? <FiX/> : <HiOutlineMenuAlt3 />}
+            </button>
+        </div>
+
+        {/* mobile sidebar */}
+        {showSidebar && 
             <div>
-                <p className='text-[30px] font-bold'>Welcome Back, {user && user.userName ? user.userName : "Guest"}</p>
-                <p className='text-[#4B5563] text-[15px] font-semibold'>{formattedDate}</p>
+                <Sidebar/>
+            </div>
+                }
+        <div className='flex flex-col md:flex-row justify-between md:items-center gap-[15px] md:gap-0'>
+            <div className='hidden lg:flex lg:flex-col'>
+                <p className='md:text-[3.5vw] lg:text-[2vw] text-[5.5vw] font-bold'>Welcome Back, {user && user.userName ? user.userName : "Guest"}</p>
+                <p className='text-[#4B5563] md:text-[2vw] lg:text-[0.9vw] text-[3.5vw] font-semibold'>{formattedDate}</p>
             </div>
             <Link to= '/career-recommendation'>
-                <button className='bg-[#2563EB] text-white px-[20px] text-[20px] py-[15px] rounded-[10px] cursor-pointer'>View Career Recommendation</button>
+                <button className='bg-[#2563EB] text-white px-[20px] md:text-[2.2vw] lg:text-[1vw] text-[3.3vw] py-[15px] rounded-[10px] cursor-pointer'>View Career Recommendation</button>
             </Link>
         </div>
 
@@ -157,25 +180,25 @@ const event = [
         <div className='flex flex-col gap-[10px]'>
             <div className='flex justify-start items-center'>
                 <div>
-                    <p className='text-[25px] font-bold'>Recommended Courses</p>
+                    <p className='md:text-[3.2vw] lg:text-[1.5vw] text-[5vw] font-bold'>Recommended Courses</p>
                 </div>
                 {/* <a href='#' className='text-[#2563EB] font-bold px-[20px] text-[20px] py-[15px] rounded-[10px] cursor-pointer'>View All {">"}</a> */}
             </div>
-            <div className='flex w-[100%] justify-between items-center'>
+            <div className='flex flex-col md:grid md:grid-cols-2 lg:flex lg:flex-row w-[100%] gap-[20px] md:gap-[15px] justify-between items-center'>
                 {recommendedCourses.map((r, index)=>(
-                    <div key={index} className='w-[24%] rounded-[20px] overflow-hidden pb-[25px] shadow-lg gap-[15px] flex flex-col'>
+                    <div key={index} className='w-[95%] md:w-[95%] lg:w-[24%] rounded-[20px] overflow-hidden pb-[25px] shadow-lg gap-[15px] flex flex-col'>
                         <div className='w-[100%] h-[300px]'>
                             <img src={r.image} className='w-full h-full object-fill' alt="" />
                         </div>
-                        <div className='px-[30px] gap-[20px] flex flex-col'>
+                        <div className='px-[15px] md:px-[30px] gap-[20px] flex flex-col'>
                             <div className='flex flex-col gap-[8px]'>
-                                <p className='text-[20px] font-bold'>{r.title}</p>
-                                <p className='text-[#4B5563] text-[18px]'>{r.institution}</p>
+                                <p className='md:text-[2.5vw] lg:text-[1.1vw] text-[5.5vw] font-bold'>{r.title}</p>
+                                <p className='text-[#4B5563] md:text-[2.3vw] lg:text-[0.9vw] text-[4.5vw]'>{r.institution}</p>
                             </div>
                             <div className='w-full justify-between flex items-center'>
-                                <p className='text-[#4B5563] text-[18px]'>{r.duration}</p>
+                                <p className='text-[#4B5563] md:text-[2.3vw] lg:text-[0.9vw] text-[4.5vw]'>{r.duration}</p>
                                 <Link to={r.linking}>
-                                    <p className=' cursor-pointer text-[#2563EB] font-bold text-[18px]'>{r.view}</p>
+                                    <p className=' cursor-pointer text-[#2563EB] font-bold md:text-[2.3vw] lg:text-[0.9vw]'>{r.view}</p>
                                 </Link>
                             </div>
                         </div>
@@ -183,7 +206,7 @@ const event = [
                     </div>
                 ))}
 
-                <Link to='/explore-courses' className='w-[24%] h-[440px] rounded-[20px] gap-[8px] shadow-2xl justify-center items-center flex cursor-pointer '>
+                <Link to='/explore-courses' className='w-[95%] md:w-[95%] lg:w-[24%] h-[440px] rounded-[20px] gap-[8px] shadow-2xl justify-center items-center flex cursor-pointer '>
                     <p className='flex items-center text-[#2563EB] hover:text-[#003fc7] text-[24px] font-semibold'>View More Courses </p>
                     <FaArrowRightLong className='text-[#2563EB] hover:text-[#003fc7] text-[24px]'/>
                 </Link>
@@ -196,30 +219,29 @@ const event = [
         <div className='flex flex-col gap-[10px]'>
             <div className='flex justify-between items-center'>
                 <div>
-                    <p className='text-[25px] font-bold'>Top Institutions for You</p>
+                    <p className='md:text-[3.2vw] lg:text-[1.5vw] text-[5vw] font-bold'>Top Institutions for You</p>
                 </div>
-                <Link to='/explore-universities' className='text-[#2563EB] font-bold px-[20px] text-[20px] py-[15px] rounded-[10px] cursor-pointer'>View All {">"}</Link>
+                <Link to='/explore-universities' className='text-[#2563EB] font-bold px-[20px] md:text-[3.2vw] lg:text-[1.5vw] text-[4vw] py-[15px] rounded-[10px] cursor-pointer'>View All {">"}</Link>
             </div>
-            <div className='flex w-[100%] justify-between items-center'>
+            <div className='flex flex-col lg:flex lg:flex-row w-[100%] justify-between gap-[20px] md:gap-[10px] items-center'>
                 {topInstitutions.map((t, indexx)=>(
-                    <div key={indexx} className='w-[32%] rounded-[20px] overflow-hidden pb-[25px] shadow-lg gap-[15px] flex flex-col'>
+                    <div key={indexx} className='w-[95%] md:w-[95%] lg:w-[32%] rounded-[10px] lg:rounded-[20px] overflow-hidden pb-[25px] shadow-lg gap-[15px] flex flex-col'>
                         <div className='w-[100%] h-[300px]'>
                             <img src={t.image} className='w-full h-full object-fill' alt="" />
                         </div>
-                        <div className='px-[30px] gap-[25px] flex flex-col'>
+                        <div className='px-[15px] md:px-[30px] gap-[25px] flex flex-col'>
                             <div className='flex flex-col gap-[8px]'>
-                                <p className='text-[20px] font-bold'>{t.institution}</p>
+                                <p className='md:text-[2.5vw] lg:text-[1.1vw] text-[5.5vw] font-bold'>{t.institution}</p>
                                 <div className='flex items-center gap-[10px]'>
                                     <p className='text-[#4B5563] text-[20px]'>{t.icons}</p>
-                                    <p className='text-[#4B5563] text-[15px]'>{t.address}</p>
+                                    <p className='text-[#4B5563] md:text-[2.3vw] lg:text-[0.9vw] text-[4.5vw]'>{t.address}</p>
                                 </div>
                             </div>
                             <Link to={t.link}>
-                            <button className=' w-[100%] border-[#2563EB] text-[#2563EB] hover:bg-[#2563EB] hover:text-white rounded-[10px] text-[20px] py-[10px] border-2 cursor-pointer'>{t.explore}</button>
+                            <button className=' w-[100%] border-[#2563EB] text-[#2563EB] hover:bg-[#2563EB] hover:text-white rounded-[10px] md:text-[2.5vw] lg:text-[1.1vw] text-[4vw] py-[10px] border-2 cursor-pointer'>{t.explore}</button>
                             
                             </Link>
                         </div>
-
                     </div>
                 ))}
             </div>

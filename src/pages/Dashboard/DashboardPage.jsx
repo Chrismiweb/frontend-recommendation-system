@@ -5,8 +5,10 @@ import Sidebar from '../../components/Sidebar'
 function DashboardPage() {
   return (
     <div className='flex'>
-        <Sidebar/>
-        <main className='w-[95%] ml-auto'>
+        <div className='hidden lg:flex'>
+          <Sidebar />
+        </div>
+        <main className='w-full lg:w-[95%] ml-auto'>
             <Dashboard/>
         </main>
     </div>

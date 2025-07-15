@@ -25,7 +25,7 @@ const Sidebar = () => {
     ];
 
     return (
-        <div className=" fixed group flex flex-col bg-[#0D2B56] text-white py-4 px-2 h-screen transition-all duration-300 w-[5%] hover:w-[20vw] overflow-hidden">
+        <div className="absolute left-0 top-0 lg:fixed group flex flex-col bg-[#0D2B56] text-white py-4 px-2 h-screen transition-all duration-300 w-[80%]  lg:w-[5%] lg:hover:w-[20vw] overflow-hidden">
             <div className='flex'>
                 <Link to='/' className='text-[20px] w-[40px] rounded-[5px] ml-[10px] my-[30px] h-[40px] bg-[white] text-[#0D2B56] flex justify-center items-center font-bold'>E</Link>
             </div>

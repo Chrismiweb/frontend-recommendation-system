@@ -72,18 +72,18 @@ export function SignUpPage() {
       <div className='w-[100%] flex justify-end absolute right-0 left-0  px-[50px] py-[30px] items-center bg-transparent'>
           <Link to='/'>
           <div className='flex justify-center items-center gap-[5px]'>
-              <div className='bg-[#2563EB] h-[32px] w-[32px] flex justify-center items-center text-[20px] rounded-[8px] font-bold text-white'>E</div>
-              <p className='text-[20px] font-black text-black'>EduPath</p>
+              <div className='bg-[#2563EB] px-[10px] lg:px-[12px] flex justify-center items-center lg:text-[1.3vw] text-[5vw] md:text-[2.5vw] rounded-[8px] font-bold text-white'>E</div>
+              <p className='lg:text-[1.3vw] text-[5vw] md:text-[2.5vw] font-black text-black'>EduPath</p>
           </div>
           </Link>
       </div>
       <div className="w-full flex">
-          <div className="h-screen w-[50%]">
+          <div className="hidden lg:flex h-screen w-[50%]">
               <img src="/image/study.jpg" className="w-full h-full object-cover brightness-50" alt="" />
           </div>
-          <div className="bg-white w-[50%] h-screen px-[150px] flex flex-col justify-start items-start pt-[100px]">
-            <h2 className="text-[#2563EB] text-[42px] font-semibold text-center">Sign in to your account</h2>
-            <p className="text-center text-gray-500 mt-4 text-[20px]" >
+          <div className="bg-white w-full lg:w-[50%] h-screen px-[20px] md:px-[100px] lg:px-[120px] xl:px-[150px] flex flex-col justify-start items-start pt-[100px]">
+            <h2 className="text-[#2563EB] lg:text-[2.3vw] md:text-[5vw] text-[6.5vw] font-semibold text-center">Sign up a new account</h2>
+            <p className="text-center text-gray-500 mt-4 lg:text-[1.1vw] md:text-[2.9vw] text-[4.5vw]" >
                   Already have an account? <Link to ="/login" className="text-[#2563EB] font-semibold">Log in</Link>
             </p>
             <form className=" w-full mt-[20px] flex flex-col gap-[24px]" onSubmit={handleSignUp}>
@@ -138,7 +138,7 @@ export function SignUpPage() {
                 </button>
               </div>
 
-              <button className="w-full bg-[#2563EB] text-white p-2 rounded-lg mt-4" disabled={loading}>
+              <button className="w-full bg-[#2563EB] text-white p-2 rounded-lg mt-4 lg:text-[1vw] md:text-[2.7vw] text-[4.3vw] mb-[40px] md:mb-[10px]" disabled={loading}>
                 {loading ? <Loader /> : "Sign Up"}
               </button>
             </form>
