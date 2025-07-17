@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import recommendedCourses from '../Courses/CourseApi'; // adjust path if needed
 import { Input, Space } from 'antd';
 const { Search } = Input;
+import { RiCloseCircleLine } from "react-icons/ri";
 
 const RecommendedCourses = () => {
   const [selectedCourse, setSelectedCourse] = useState(null);
@@ -14,25 +15,25 @@ const RecommendedCourses = () => {
   );
 
   return (
-    <div className='w-full px-[50px] pt-[50px]'>
+    <div className='w-full lg:px-[50px] pt-[50px]'>
       {/* Modal */}
       {selectedCourse && (
-        <div className="fixed inset-0 bg-black/80 bg-opacity-50 flex justify-center items-center z-50">
-          <div className="bg-white w-[90%] md:w-[860px] rounded-[20px] overflow-hidden pb-[54px] flex flex-col gap-[20px] relative">
+        <div className="absolute inset-0 bg-black/80 bg-opacity-50 flex justify-center items-center z-50">
+          <div className="bg-white w-[90%] md:w-[90%] lg:w-[50%] rounded-[20px] overflow-hidden pb-[54px] flex flex-col gap-[20px] relative">
             <button
-              className="absolute top-[35px] w-[40px] justify-center items-center flex h-[40px] right-[50px] text-[30px] border-white border-4 rounded-full cursor-pointer  font-bold text-white"
+              className="absolute top-[35px] justify-center items-center flex right-[30px] lg:right-[50px] md:text-[6vw] lg:text-[2.5vw] text-[10vw] cursor-pointer  font-bold text-white"
               onClick={() => setSelectedCourse(null)}
             >
-              ×
+              <RiCloseCircleLine />
             </button>
-            <img src={selectedCourse.image} alt="course" className="w-full h-[400px] object-fill" />
-           <div className='w-full px-[32px]'>
-              <h2 className="text-[24px] font-bold">{selectedCourse.title}</h2>
+            <img src={selectedCourse.image} alt="course" className="w-full h-[30vh]  lg:h-[400px] object-fill" />
+           <div className='px-[15px] md:px-[30px] gap-[10px] flex flex-col'>
+              <h2 className="md:text-[2.5vw] lg:text-[1.1vw] text-[5.5vw] font-bold">{selectedCourse.title}</h2>
               <div className='flex justify-between items-center'>
-                <p className="text-[#4B5563] text-[18px]">{selectedCourse.institution}</p>
-                <p className="text-[#4B5563] text-[18px]">{selectedCourse.duration}</p>
+                <p className="text-[#4B5563] md:text-[2.3vw] lg:text-[0.9vw] text-[4.5vw]">{selectedCourse.institution}</p>
+                <p className="text-[#4B5563] md:text-[2.3vw] lg:text-[0.9vw] text-[4.5vw]">{selectedCourse.duration}</p>
               </div>
-              <p className="text-[16px] leading-[24px] text-[#374151] mt-[40px]">{selectedCourse.about}</p>
+              <p className="md:text-[2.3vw] lg:text-[0.9vw] text-[4vw] leading-[24px] text-[#374151] mt-[20px] lg:mt-[40px]">{selectedCourse.about}</p>
            </div>
           </div>
         </div>
@@ -40,35 +41,51 @@ const RecommendedCourses = () => {
 
       {/* Main Layout */}
       <div className='flex flex-col gap-[10px]'>
-        <div className='flex justify-between items-center'>
+        <div className='flex flex-col md:flex-row justify-between md:items-center gap-[20px] md:gap-0'>
           <div>
-            <p className='text-[25px] font-bold'>Recommended Courses</p>
+            <p className='md:text-[3.2vw] lg:text-[1.5vw] text-[5vw] font-bold'>Recommended Courses</p>
           </div>
-           <Space direction="vertical">
+           {/* <Space direction="vertical">
             <Search placeholder="SEARCH COURSES" allowClear style={{ width: 800 }} className='placeholder:font-bold' 
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             />
+          </Space> */}
+          <Space direction="vertical">
+              <Search
+                placeholder="SEARCH COURSES"
+                allowClear
+                className="placeholder:font-bold"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                style={{
+                      width: window.innerWidth >= 1024
+                        ? '800px' // lg
+                        : window.innerWidth >= 768
+                        ? '350px' // md
+                        : '90vw'  // sm
+                    }}
+              />
           </Space>
         </div>
 
-        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 w-full gap-[16px] py-[30px] justify-between items-center'>
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 w-full gap-[16px] py-[30px] justify-between items-center'>
           {filteredCourses.length > 0 ? (
               filteredCourses.map((r, index) => (
-                <div key={index} className='w-[95%] rounded-[20px] overflow-hidden pb-[25px] shadow-lg gap-[15px] flex flex-col'>
+                <div key={index} className='w-full lg:w-[95%] rounded-[20px] overflow-hidden pb-[25px] shadow-lg gap-[15px] flex flex-col'>
                   <div className='w-full h-[300px]'>
                     <img src={r.image} className='w-full h-full object-fill' alt="" />
                   </div>
-                  <div className='px-[30px] gap-[20px] flex flex-col'>
+                  <div className='px-[15px] md:px-[30px] gap-[20px] flex flex-col'>
                     <div className='flex flex-col gap-[8px]'>
-                      <p className='text-[20px] font-bold'>{r.title}</p>
-                      <p className='text-[#4B5563] text-[15px]'>{r.institution}</p>
+                      <p className='md:text-[2.5vw] lg:text-[1.1vw] text-[5.5vw] font-bold'>{r.title}</p>
+                      <p className='text-[#4B5563] md:text-[2.3vw] lg:text-[0.9vw] text-[4.5vw]'>{r.institution}</p>
                     </div>
                     <div className='w-full justify-between flex items-center'>
-                      <p className='text-[#4B5563]'>{r.duration}</p>
+                      <p className='text-[#4B5563] md:text-[2.3vw] lg:text-[0.9vw] text-[4.5vw]'>{r.duration}</p>
                       <p
                         onClick={() => setSelectedCourse(r)}
-                        className='cursor-pointer text-[#2563EB] font-bold text-[18px]'
+                        className='cursor-pointer text-[#2563EB] font-bold md:text-[2.3vw] lg:text-[0.9vw] text-[4.2vw]'
                       >
                         {r.view}
                       </p>

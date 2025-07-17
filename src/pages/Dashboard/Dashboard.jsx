@@ -201,7 +201,7 @@ const event = [
                             <div className='w-full justify-between flex items-center'>
                                 <p className='text-[#4B5563] md:text-[2.3vw] lg:text-[0.9vw] text-[4.5vw]'>{r.duration}</p>
                                 <Link to={r.linking}>
-                                    <p className=' cursor-pointer text-[#2563EB] font-bold md:text-[2.3vw] lg:text-[0.9vw]'>{r.view}</p>
+                                    <p className=' cursor-pointer text-[#2563EB] font-bold md:text-[2.3vw] lg:text-[0.9vw] text-[4.2vw]'>{r.view}</p>
                                 </Link>
                             </div>
                         </div>

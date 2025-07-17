@@ -5,8 +5,10 @@ import Sidebar from '../../components/Sidebar'
 function CoursePage() {
   return (
     <div className='flex'>
-        <Sidebar/>
-        <main className='w-[95%] ml-auto'>
+        <div className='hidden lg:flex'>
+          <Sidebar />
+        </div>
+        <main className='w-full px-[20px] lg:px-0 lg:w-[95%] ml-auto'>
             <Courses/>
         </main>
     </div>
