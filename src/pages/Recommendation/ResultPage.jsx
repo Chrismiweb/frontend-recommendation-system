@@ -5,10 +5,12 @@ import Result from './Result'
 function ResultPage() {
   return (
     <div className='flex'>
-        <Sidebar/>
-        <main className='w-[95%] ml-auto'>
-            <Result/>
-        </main>
+      <div className='hidden lg:flex'>
+        <Sidebar />
+      </div>
+      <main className='w-full px-[20px] lg:px-0 lg:w-[95%] ml-auto'>
+          <Result/>
+      </main>
     </div>
   )
 }

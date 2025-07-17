@@ -253,10 +253,10 @@ const event = [
          <div className='flex flex-col gap-[10px]'>
             <div className='flex '>
                 <div>
-                    <p className='text-[25px] font-bold'>Upcoming Events</p>
+                    <p className='md:text-[3.2vw] lg:text-[1.5vw] text-[5vw] font-bold'>Upcoming Events</p>
                 </div>
             </div>
-            <div className='grid grid-cols-2 w-[68%] gap-[20px]  justify-between items-center '>
+            <div className='grid grid-cols-1 md:grid-cols-2 w-full lg:w-[68%] gap-[20px]  justify-between items-center '>
                 {event.map((e, indexx)=>(
                     <div key={indexx} className='w-[99%] rounded-[20px] overflow-hidden py-[16px] px-[16px]  flex shadow-lg gap-[15px] bg-white'>
                         <div>
@@ -264,14 +264,14 @@ const event = [
                         </div>
                         <div className='gap-[25px] flex flex-col'>
                             <div className='flex flex-col gap-[8px]'>
-                                <p className='text-[20px] font-bold'>{e.eventName}</p>
+                                <p className='md:text-[2.5vw] lg:text-[1.1vw] text-[5vw] font-bold'>{e.eventName}</p>
                                 <div className='flex items-center gap-[10px]'>
-                                    <p className='text-[#4B5563] text-[20px]'>{e.date}</p>
+                                    <p className='text-[#4B5563] md:text-[2.3vw] lg:text-[0.9vw] text-[4.5vw]'>{e.date}</p>
                                     <p className='text-[7px] text-[#4B5563]'>{e.dot}</p>
-                                    <p className='text-[#4B5563] text-[20px]'>{e.time}</p>
+                                    <p className='text-[#4B5563] md:text-[2.3vw] lg:text-[0.9vw] text-[4.5vw]'>{e.time}</p>
                                 </div>
                             </div>
-                            <p className='text-[#2563EB] text-[17px]'>{e.eventType}</p>
+                            <p className='text-[#2563EB] md:text-[2.1vw] lg:text-[0.9vw] text-[4vw]'>{e.eventType}</p>
                         </div>
 
                     </div>

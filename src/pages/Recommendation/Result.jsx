@@ -8,8 +8,11 @@ import { ToastContainer, toast } from "react-toastify";
 import { GoPlus } from "react-icons/go";
 import { MdOutlineClose } from "react-icons/md";
 import { GrCloudUpload } from "react-icons/gr";
+import { HiOutlineMenuAlt3 } from "react-icons/hi"
+
 // import { SMTPClient } from 'emailjs';
 import { Spin } from 'antd';
+import Sidebar from "../../components/Sidebar";
 
 const categories = {
   "Health & Medicine": [
@@ -63,6 +66,18 @@ const Result = () => {
   const [sampleFile, setSampleFile] = useState(null);
   const [previewURL, setPreviewURL] = useState(null);
   const [loading, setLoading] = useState(false)
+  const [showSidebar, setShowSidebar] = useState(false)
+
+
+//   handle display sidebar
+    const handleDisplaySidebar = () => {
+        setShowSidebar(true); // open sidebar
+    };
+
+    const handleCloseSidebar = () => {
+        setShowSidebar(false); // close sidebar
+    };
+
   const [questionnaire, setQuestionnaire] = useState(() => {
     const q = {};
     for (let group in categories) {
@@ -137,14 +152,14 @@ const handlePrevQuestion = () => {
       const currentQuestion = allQuestions[currentQuestionIndex];
       return (
         <div key={currentQuestion.key}>
-          <label className="block mb-2 text-black mt-[60px] text-[24px]">{currentQuestion.label}</label>
+          <label className="block mb-2 text-black mt-[60px] md:text-[2.3vw] lg:text-[1.3vw] text-[4.5vw]">{currentQuestion.label}</label>
 
           {/* Mapped checkboxes */}
           <div className="w-full h-[100px] gap-[16px] mt-[32px] flex flex-col">
             {options.map((option) => (
               <div
                 key={option.value}
-                className="flex gap-[16px] py-[25px] px-[25px] bg-[#FAFAFA] border-2 border-[#E0E0E0] rounded-[10px]"
+                className="flex gap-[16px] py-[20px] md:py-[25px] px-[25px] bg-[#FAFAFA] border-2 border-[#E0E0E0] rounded-[10px]"
               >
                 <input
                   type="checkbox"
@@ -153,7 +168,7 @@ const handlePrevQuestion = () => {
                   onChange={() => handleQuestionnaireChange(currentQuestion.group, currentQuestion.key, option.value)}
                   className="cursor-pointer"
                 />
-                <label htmlFor={`${option.value}-${currentQuestion.key}`} className="text-[24px] cursor-pointer">
+                <label htmlFor={`${option.value}-${currentQuestion.key}`} className="md:text-[2.3vw] lg:text-[1.3vw] text-[4.5vw] cursor-pointer">
                   {option.label}
                 </label>
               </div>
@@ -178,18 +193,33 @@ const handlePrevQuestion = () => {
   const progress = ((currentQuestionIndex + 1) / allQuestions.length) * 100;
 
   return (
-    <div className="w-[100%] flex flex-col justify-center items-center pt-[96px]">
+<div className="flex flex-col">
+    <div className='flex lg:hidden w-full pt-[30px] justify-end'>
+        <div>
+            {!showSidebar && (
+                <button onClick={handleDisplaySidebar} className='text-[9vw] md:text-[6vw]'>
+                <HiOutlineMenuAlt3 />
+                </button>
+            )}
+        </div>
+        {/* Mobile sidebar */}
+          {showSidebar && (
+              <Sidebar onClose={handleCloseSidebar} />
+          )}
+    </div>
+    <div className="w-[100%] flex flex-col justify-center items-center pt-[40px] lg:pt-[96px]">
       <ToastContainer />
-      <h1 className="text-[36px]">Discover Your Ideal Career Path</h1>
-      <p className="text-[24px] text-[#4B5563]">Answer a few questions to get personalized career recommendations</p>
+
+      <h1 className="md:text-[4vw] lg:text-[2vw] text-[6vw] mb-[10px] text-center">Discover Your Ideal Career Path</h1>
+      <p className="w-[90%] lg:w-[60%] text-[#6B7280] text-center md:text-[2.3vw] lg:text-[1.3vw] text-[4.5vw]">Answer a few questions to get personalized career recommendations</p>
 
 
       <div className="w-[100%] flex flex-col justify-center items-center mt-[25px]">
-          <div className="flex justify-between items-center w-[50%]">
-              <p>Step 1 of 5</p>
-              <p className="mt-2 text-lg text-[#4B5563">{Math.round(progress)}%</p>
+          <div className="flex justify-between items-center w-full md:w-[100%] lg:w-[50%]">
+              <p className="md:text-[2.3vw] lg:text-[1.1vw] text-[4.2vw]">Step 1 of 5</p>
+              <p className="mt-2 md:text-[2.3vw] lg:text-[1.1vw] text-[4.2vw] text-[#4B5563]">{Math.round(progress)}%</p>
           </div>
-          <div className="w-[50%] bg-gray-300 h-2 rounded-full">
+          <div className="w-full md:w-[100%] lg:w-[50%] bg-gray-300 h-2 rounded-full">
             <div
               className="bg-[#2563EB] h-full rounded-full"
               style={{ width: `${progress}%` }}
@@ -200,25 +230,25 @@ const handlePrevQuestion = () => {
 
       {/* Questionnaire Page */}
       {!isQuestionnaireComplete ? (
-        <div className="w-[50%]">
+        <div className="w-full md:w-[90%] lg:w-[50%]">
           <div>
             {renderQuestion()}
           </div>
-          <div className="flex justify-between items-center mt-[300px]">
-              <button onClick={handlePrevQuestion} className=" bg-[#2563EB] text-white text-[18px] px-[31px] py-2 rounded cursor-pointer">
+          <div className="flex justify-between items-center mt-[28vh] mb-[50px] md:mt-[250px] lg:mt-[300px]">
+              <button onClick={handlePrevQuestion} className=" bg-[#2563EB] text-white md:text-[2.3vw] lg:text-[1vw] text-[4.5vw] px-[31px] py-2 rounded cursor-pointer">
               Back
             </button>
-              <button onClick={handleNextQuestion} className=" bg-[#2563EB] text-white text-[18px] px-[31px] py-2 rounded cursor-pointer">
+              <button onClick={handleNextQuestion} className=" bg-[#2563EB] text-white md:text-[2.3vw] lg:text-[1vw] text-[4.5vw] px-[31px] py-2 rounded cursor-pointer">
               Next {">"}
             </button>
           </div>
         </div>
       ) : (
         // After completing the questionnaire, show the subject/grade form
-        <div className="w-[50%] flex flex-col justify-center items-center gap-[15px] mt-[24px]">
+        <div className="w-[100%] lg:w-[50%] flex flex-col justify-center items-center gap-[15px] mt-[24px]">
           {/* Subject and Grade Selection */}
           {subjects.map((subj, index) => (
-            <div key={subj.id} className="flex gap-4 w-[95%] justify-between items-center ">
+            <div key={subj.id} className="flex gap-4 w-full justify-between items-center ">
               <select
                 value={subj.subject}
                 onChange={(e) => {
@@ -226,7 +256,7 @@ const handlePrevQuestion = () => {
                   updated[index].subject = e.target.value;
                   setSubjects(updated);
                 }}
-                className="border-2 p-2 w-[80%] border-[#E5E7EB] rounded-[5px] text-[#9CA3AF]"
+                className="border-2 p-2 w-[60%] md:w-[70%] lg:w-[80%] border-[#E5E7EB] rounded-[5px] text-[#9CA3AF] md:text-[2.3vw] lg:text-[0.9vw] text-[3.8vw]"
               >
                 <option value="">Subject</option>
                 <option>English Language</option>
@@ -257,7 +287,7 @@ const handlePrevQuestion = () => {
                   g[index] = e.target.value;
                   setGrades(g);
                 }}
-                className="border p-2 rounded w-[15%] border-[#E5E7EB] text-[#9CA3AF]"
+                className="border p-2 rounded w-[37%]  lg:w-[15%] border-[#E5E7EB] text-[#9CA3AF] md:text-[2.3vw] lg:text-[0.9vw] text-[3.8vw]"
               >
                 <option value="">Grade</option>
                 <option>A1</option><option>B2</option><option>B3</option>
@@ -269,11 +299,11 @@ const handlePrevQuestion = () => {
             </div>
           ))}
           <div className="w-full">
-              <button onClick={() => setSubjects([...subjects, { id: Date.now(), subject: "" }])} className="mb-4 flex items-center mt-[6px] cursor-pointer gap-2 text-[17px] font-semibold text-[#2563EB]">
-                <GoPlus className="text-[17px] font-bold"/> Add Another Subject
+              <button onClick={() => setSubjects([...subjects, { id: Date.now(), subject: "" }])} className="mb-4 flex items-center mt-[6px] cursor-pointer gap-2 md:text-[2.3vw] lg:text-[1vw] text-[4.5vw] font-semibold text-[#2563EB]">
+                <GoPlus className="md:text-[2.3vw] lg:text-[1vw] text-[4.5vw] font-bold"/> Add Another Subject
               </button>
           </div>
-          <p className="text-[250x] font-bold mt-[20px]">OR</p>
+          <p className="md:text-[2.3vw] lg:text-[1.3vw] text-[4.5vw] font-bold mt-[20px]">OR</p>
           <div className="relative mt-[20px] w-full">
               <input
                 type="file"
@@ -284,7 +314,7 @@ const handlePrevQuestion = () => {
               />
               <label 
                 htmlFor="file-upload"
-                className="w-[100%] border-[#2563EB] flex justify-center items-center gap-[5px] text-[#2563EB] rounded-[10px] text-[16px] py-[10px] border-2 cursor-pointer"
+                className="w-[100%] border-[#2563EB] flex justify-center items-center gap-[5px] text-[#2563EB] rounded-[10px] md:text-[2.3vw] lg:text-[1vw] text-[3.9vw] py-[10px] border-2 cursor-pointer"
               >
                 <GrCloudUpload />
                 <span>Upload Result</span>
@@ -303,10 +333,10 @@ const handlePrevQuestion = () => {
             )}
 
           <div className="w-full mt-[30px]">
-              <p className='text-[20px] font-bold'>Preferred Study Location</p>
-              <p className='text-[#4B5563] text-[14px] font-semibold mt-[24px]'>Select the region where you'd like to study</p>
+              <p className='md:text-[2.5vw] lg:text-[1.2vw] text-[4.5vw] font-bold'>Preferred Study Location</p>
+              <p className='text-[#4B5563] md:text-[2.2vw] lg:text-[0.8vw] text-[3.7vw] font-semibold mt-[10px] lg:mt-[20px]'>Select the region where you'd like to study</p>
           </div>
-          <select value={region} onChange={(e) => setRegion(e.target.value)} className="border-2 p-2 w-full py-[10px] border-[#E5E7EB] rounded-[5px] text-[#9CA3AF]">
+          <select value={region} onChange={(e) => setRegion(e.target.value)} className="border-2 p-2 w-full py-[10px] border-[#E5E7EB] rounded-[5px] text-[#9CA3AF] md:text-[2.3vw] lg:text-[0.9vw] text-[3.8vw]">
             <option value="">Select a Region</option>
             <option>North Central</option>
             <option>North East</option>
@@ -320,14 +350,14 @@ const handlePrevQuestion = () => {
           <input type="email" value={email} onChange={(e)=>setEmail(e.target.value)} />
 
           {/* Final recommendation button */}
-         <div className="w-full justify-between items-center flex">
-           <button onClick={handlePrevQuestion} className=" bg-[#2563EB] text-white text-[18px] px-[31px] py-2 rounded cursor-pointer">
+         <div className="w-full justify-between items-center flex mb-[50px]">
+           <button onClick={handlePrevQuestion} className=" bg-[#2563EB] text-white md:text-[2.3vw] lg:text-[1vw] text-[4.5vw] px-[31px] py-2 rounded cursor-pointer">
               Back
             </button>
             <button 
                 onClick={fetchRecommendations}
                 disabled={loading}  // Disable the button when loading is true
-                className={`mt-6 bg-[#2563EB] text-[18px] text-white px-[31px] py-2 rounded ${loading ? 'cursor-not-allowed opacity-50' : ''}`}
+                className={` bg-[#2563EB] md:text-[2.3vw] lg:text-[1vw] text-[4.5vw] text-white px-[15px] py-2 rounded ${loading ? 'cursor-not-allowed opacity-50' : ''}`}
               >
                 {loading ? (
                   <div className="flex items-center justify-center">
@@ -346,12 +376,13 @@ const handlePrevQuestion = () => {
       {result && (
         <div className="bg-gray-100 p-4 mt-6 rounded">
           <h2 className="text-lg font-bold mb-2">Recommended Courses:</h2>
-          <pre className="whitespace-pre-wrap font-sans text-[20px]">{result.replaceAll("*", "")}</pre>
+          <pre className="whitespace-pre-wrap font-sans md:text-[2.3vw] lg:text-[1.3vw] text-[4.5vw]">{result.replaceAll("*", "")}</pre>
         </div>
       )}
       {/* email sending  */}
       
     </div>
+</div>
   );
 };
 
