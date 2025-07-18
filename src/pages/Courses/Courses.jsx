@@ -50,7 +50,7 @@ const RecommendedCourses = () => {
     <div className='w-full lg:px-[50px] pt-[50px]'>
       {/* Modal */}
       {selectedCourse && (
-        <div className="absolute inset-0 bg-black/80 bg-opacity-50 flex justify-center items-center z-50">
+        <div className="fixed inset-0 bg-black/80 bg-opacity-50 flex justify-center items-center z-50">
           <div className="bg-white w-[90%] md:w-[90%] lg:w-[50%] rounded-[20px] overflow-hidden pb-[54px] flex flex-col gap-[20px] relative">
             <button
               className="absolute top-[35px] justify-center items-center flex right-[30px] lg:right-[50px] md:text-[6vw] lg:text-[2.5vw] text-[10vw] cursor-pointer  font-bold text-white"

@@ -1,11 +1,29 @@
 import React, { useState } from 'react';
 import { Input, Space } from 'antd';
 import { universities } from '../University/UniversitiesApi';
+import { RiCloseCircleLine } from "react-icons/ri";
+import Sidebar from '../../components/Sidebar';
+import { HiOutlineMenuAlt3 } from "react-icons/hi"
+
+
+
+
 const { Search } = Input;
 
 const ExploreUniversities = () => {
   const [selectedUniversity, setSelectedUniversity] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
+  const [showSidebar, setShowSidebar] = useState(false)
+      
+      
+  //   handle display sidebar
+    const handleDisplaySidebar = () => {
+        setShowSidebar(true); // open sidebar
+    };
+  
+    const handleCloseSidebar = () => {
+        setShowSidebar(false); // close sidebar
+    };
 
   const filteredUniversities = universities.filter((university) =>
     university.institution.toLowerCase().includes(searchTerm.toLowerCase())
@@ -13,23 +31,42 @@ const ExploreUniversities = () => {
   
   
   return (
-    <div className='w-full px-[50px] pt-[50px]'>
+<div>
+    <div className='flex lg:hidden justify-between items-center pt-[30px]'> 
+        <div>
+            <p className='md:text-[3.2vw] lg:text-[1.5vw] text-[5vw] w-[100%] font-bold'>Recommended Courses</p>
+        </div>
+        <div className='flex lg:hidden w-[30%]  justify-end'>
+            <div>
+                {!showSidebar && (
+                    <button onClick={handleDisplaySidebar} className='text-[9vw] md:text-[6vw]'>
+                    <HiOutlineMenuAlt3 />
+                    </button>
+                )}
+            </div>
+            {/* Mobile sidebar */}
+              {showSidebar && (
+                  <Sidebar onClose={handleCloseSidebar} />
+              )}
+        </div>
+    </div>
+    <div className='w-full pt-[50px] lg:px-[50px]'>
       {/* Modal */}
       {selectedUniversity && (
         <div className="fixed inset-0 bg-black/80 bg-opacity-50 flex justify-center items-center z-50">
-          <div className="bg-white w-[90%] md:w-[860px] rounded-[20px] overflow-hidden pb-[54px] flex flex-col gap-[20px] relative">
+          <div className="bg-white w-[90%] md:w-[90%] lg:w-[50%] rounded-[20px] overflow-hidden pb-[54px] flex flex-col gap-[20px] relative">
             <button
-              className="absolute top-[35px] w-[40px] justify-center items-center flex h-[40px] right-[50px] text-[30px] border-black border-4 rounded-full cursor-pointer font-bold text-black"
+              className="absolute top-[35px] justify-center items-center flex right-[30px] lg:right-[50px] md:text-[6vw] lg:text-[2.5vw] text-[10vw] cursor-pointer  font-bold text-white"
               onClick={() => setSelectedUniversity(null)}
             >
-              ×
+              <RiCloseCircleLine />
             </button>
-            <img src={selectedUniversity.image} alt="university" className="w-full h-[400px] object-fill" />
-            <div className='w-full px-[32px]'>
-              <h2 className="text-[24px] font-bold">{selectedUniversity.institution}</h2>
-              <p className="text-[#4B5563] text-[18px] mt-[20px]">{selectedUniversity.address}</p>
-              <p className="text-[#4B5563] text-[18px] mb-[30px] mt-[20px]">{selectedUniversity.about}</p>
-              <a className='mt-[20px] text-[19px] text-blue-500 font-bold' href={selectedUniversity.website}>Visit School Website</a>
+            <img src={selectedUniversity.image} alt="university" className="w-full h-[30vh] lg:h-[400px] object-fill" />
+            <div className='px-[15px] md:px-[30px] gap-[10px] flex flex-col'>
+              <h2 className="md:text-[2.5vw] lg:text-[1.1vw] text-[5.5vw] font-bold">{selectedUniversity.institution}</h2>
+              <p className="text-[#4B5563] md:text-[2.3vw] lg:text-[0.9vw] text-[4.5vw]">{selectedUniversity.address}</p>
+              <p className="md:text-[2.3vw] lg:text-[0.9vw] text-[4vw] leading-[24px] text-[#374151] mt-[20px] lg:mt-[40px] mb-[30px] lg:mb-[40px]">{selectedUniversity.about}</p>
+              <a className='md:text-[2.3vw] lg:text-[0.9vw] text-[4vw] leading-[24px] text-blue-600 font-bold' href={selectedUniversity.website}>Visit School Website</a>
             </div>
           </div>
         </div>
@@ -37,16 +74,25 @@ const ExploreUniversities = () => {
 
       {/* Main Layout */}
       <div className='flex flex-col gap-[10px]'>
-        <div className='flex justify-between items-center'>
-          <p className='text-[25px] font-bold'>Explore Universities</p>
+        <div className='flex flex-col md:flex-row justify-between md:items-center gap-[20px] md:gap-0'>
+          <div className='hidden lg:flex'>
+            <p className='text-[25px] font-bold'>Explore Universities</p>
+          </div>
           <Space direction="vertical">
-            <Search
-              placeholder="Search Universities"
-              allowClear
-              style={{ width: 800 }}
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
+              <Search
+                placeholder="SEARCH COURSES"
+                allowClear
+                className="placeholder:font-bold"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                style={{
+                      width: window.innerWidth >= 1024
+                        ? '800px' // lg
+                        : window.innerWidth >= 768
+                        ? '90vw' // md
+                        : '90vw'  // sm
+                    }}
+              />
           </Space>
         </div>
 
@@ -59,13 +105,13 @@ const ExploreUniversities = () => {
                 </div>
                 <div className='px-[30px] gap-[20px] flex flex-col'>
                   <div className='flex flex-col gap-[8px]'>
-                    <p className='text-[20px] font-bold'>{u.institution}</p>
+                    <p className='md:text-[2.5vw] lg:text-[1.1vw] text-[5.5vw] font-bold'>{u.institution}</p>
                     <div className='flex items-center gap-[10px]'>
                         <p className='text-[#4B5563] text-[20px]'>{u.icons}</p>
-                        <p className='text-[#4B5563] text-[15px]'>{u.address}</p>
+                        <p className='text-[#4B5563] md:text-[2.3vw] lg:text-[0.9vw] text-[4.5vw]'>{u.address}</p>
                     </div>
                   </div>
-                  <button onClick={() => setSelectedUniversity(u)} className=' w-[100%] border-[#2563EB] text-[#2563EB] hover:bg-[#2563EB] hover:text-white rounded-[10px] text-[20px] py-[10px] border-2 cursor-pointer'>{u.button}</button>
+                  <button onClick={() => setSelectedUniversity(u)} className='w-[100%] border-[#2563EB] text-[#2563EB] hover:bg-[#2563EB] hover:text-white rounded-[10px] md:text-[2.5vw] lg:text-[1.1vw] text-[4vw] py-[10px] border-2 cursor-pointer'>{u.button}</button>
                 </div>
               </div>
             ))
@@ -77,6 +123,8 @@ const ExploreUniversities = () => {
         </div>
       </div>
     </div>
+</div>
+
   );
 };
 
