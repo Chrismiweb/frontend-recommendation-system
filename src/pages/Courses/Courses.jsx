@@ -3,11 +3,24 @@ import recommendedCourses from '../Courses/CourseApi'; // adjust path if needed
 import { Input, Space } from 'antd';
 const { Search } = Input;
 import { RiCloseCircleLine } from "react-icons/ri";
+import { HiOutlineMenuAlt3 } from "react-icons/hi"
+import Sidebar from '../../components/Sidebar';
+
 
 const RecommendedCourses = () => {
   const [selectedCourse, setSelectedCourse] = useState(null);
-
   const [searchTerm, setSearchTerm] = useState('');
+  const [showSidebar, setShowSidebar] = useState(false)
+    
+    
+//   handle display sidebar
+  const handleDisplaySidebar = () => {
+      setShowSidebar(true); // open sidebar
+  };
+
+  const handleCloseSidebar = () => {
+      setShowSidebar(false); // close sidebar
+  };
 
   const filteredCourses = recommendedCourses.filter((course) =>
     course.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -15,6 +28,25 @@ const RecommendedCourses = () => {
   );
 
   return (
+<div>
+    <div className='flex lg:hidden justify-between items-center pt-[30px]'> 
+        <div>
+            <p className='md:text-[3.2vw] lg:text-[1.5vw] text-[5vw] w-[100%] font-bold'>Recommended Courses</p>
+        </div>
+        <div className='flex lg:hidden w-[30%]  justify-end'>
+            <div>
+                {!showSidebar && (
+                    <button onClick={handleDisplaySidebar} className='text-[9vw] md:text-[6vw]'>
+                    <HiOutlineMenuAlt3 />
+                    </button>
+                )}
+            </div>
+            {/* Mobile sidebar */}
+              {showSidebar && (
+                  <Sidebar onClose={handleCloseSidebar} />
+              )}
+        </div>
+    </div>
     <div className='w-full lg:px-[50px] pt-[50px]'>
       {/* Modal */}
       {selectedCourse && (
@@ -42,15 +74,16 @@ const RecommendedCourses = () => {
       {/* Main Layout */}
       <div className='flex flex-col gap-[10px]'>
         <div className='flex flex-col md:flex-row justify-between md:items-center gap-[20px] md:gap-0'>
-          <div>
-            <p className='md:text-[3.2vw] lg:text-[1.5vw] text-[5vw] font-bold'>Recommended Courses</p>
-          </div>
+
            {/* <Space direction="vertical">
             <Search placeholder="SEARCH COURSES" allowClear style={{ width: 800 }} className='placeholder:font-bold' 
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             />
           </Space> */}
+          <div className='hidden lg:flex'>
+            <p className='md:text-[3.2vw] lg:text-[1.5vw] text-[5vw] font-bold'>Recommended Courses</p>
+          </div>
           <Space direction="vertical">
               <Search
                 placeholder="SEARCH COURSES"
@@ -62,7 +95,7 @@ const RecommendedCourses = () => {
                       width: window.innerWidth >= 1024
                         ? '800px' // lg
                         : window.innerWidth >= 768
-                        ? '350px' // md
+                        ? '90vw' // md
                         : '90vw'  // sm
                     }}
               />
@@ -101,6 +134,8 @@ const RecommendedCourses = () => {
         </div>
       </div>
     </div>
+</div>
+  
   );
 };
 
