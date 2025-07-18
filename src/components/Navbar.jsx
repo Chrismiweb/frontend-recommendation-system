@@ -76,9 +76,9 @@ function Navbar() {
       {/* Mobile Dropdown Menu */}
       {menuOpen && (
         <div className='flex flex-col lg:hidden gap-[20px] md:gap-[25px] bg-white px-[20px] py-[20px] shadow-md z-50 absolute top-[100%] w-full left-0'>
-          <Link to='' onClick={toggleMenu}><p className='text-[5vw] md:text-[3.5vw]'>How it works</p></Link>
-          <Link to='' onClick={toggleMenu}><p className='text-[5vw] md:text-[3.5vw]'>Why Us</p></Link>
-          <Link to='' onClick={toggleMenu}><p className='text-[5vw] md:text-[3.5vw]'>About</p></Link>
+          <a href='#how-it-works' onClick={toggleMenu}><p className='text-[5vw] md:text-[3.5vw]'>How it works</p></a>
+          <a href='#why-choose-us' onClick={toggleMenu}><p className='text-[5vw] md:text-[3.5vw]'>Why Us</p></a>
+          <a href='#about' onClick={toggleMenu}><p className='text-[5vw] md:text-[3.5vw]'>About</p></a>
             {user && user.userName 
               ? 
               <div className='flex flex-col gap-[20px]'>

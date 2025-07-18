@@ -11,7 +11,7 @@ import Footer from '../../components/Footer'
 
 function HomePage() {
   return (
-    <div className=' w-[100%] overflow-hidden'>
+    <div className=' w-[100%] overflow-hidden scroll-smooth' >
         <Navbar/>
         <Hero/>
         <HowItWork/>
