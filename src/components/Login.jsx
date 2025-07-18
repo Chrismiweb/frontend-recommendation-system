@@ -63,14 +63,14 @@ export function LoginPage() {
           <div className="hidden lg:flex h-screen w-[50%]">
               <img src="/image/study.jpg" className="w-full h-full object-cover brightness-50" alt="" />
           </div>
-          <div className="bg-white w-full lg:w-[50%] h-screen px-[20px] md:px-[100px] lg:px-[120px] xl:px-[150px] flex flex-col justify-start items-start pt-[120px] lg:pt-[160px]">
+          <div className="bg-white w-full lg:w-[50%] h-screen px-[20px] md:px-[100px] lg:px-[6vw] flex flex-col justify-start items-start pt-[120px] lg:pt-[20vh]">
             <h2 className="text-[#2563EB] lg:text-[2.3vw] md:text-[5vw] text-[6.5vw] font-semibold text-center">Sign in to your account</h2>
             <p className="text-center text-gray-500 mt-4 lg:text-[1.1vw] md:text-[2.9vw] text-[4.5vw]" >
                   Don't have an account? <Link to ="/signup" className="text-[#2563EB] font-semibold">Sign Up</Link>
             </p>
             {error && <p className="text-red-500 text-center mt-2">{error}</p>}
 
-            <form className="w-[100%] mt-[50px] flex flex-col gap-[24px]" onSubmit={handleLogin}>
+            <form className="w-[100%] mt-[5vh] flex flex-col gap-[3vh]" onSubmit={handleLogin}>
               <div className="flex items-center border-b [#2563EB] py-2">
                 <FaEnvelope className="text-[#2563EB] mr-2" />
                 <input
@@ -98,7 +98,6 @@ export function LoginPage() {
                 {loading ? <Loader /> : "Login"}
               </button>
             </form>
-            
           </div>
         </div>
         

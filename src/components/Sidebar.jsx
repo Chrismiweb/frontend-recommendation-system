@@ -32,18 +32,18 @@ const Sidebar = ({onClose}) => {
                 ${close ? 'left-0' : '-left-full'}
                 fixed top-0 lg:left-0 lg:fixed group flex flex-col bg-[#0D2B56] text-white py-4 px-2 h-screen transition-all duration-300 
                 w-[85%] lg:w-[5%] lg:hover:w-[20vw] overflow-hidden z-40
-            `}>
+            `}>      
             <div className='flex items-center justify-between md:pr-[50px]'>
                 <div className='flex'>
-                    <Link to='/' className='text-[20px] w-[40px] rounded-[5px] ml-[10px] my-[30px] h-[40px] bg-[white] text-[#0D2B56] flex justify-center items-center font-bold'>E</Link>
+                    <Link to='/' className='md:text-[2.5vw] lg:text-[1.1vw] text-[5.5vw] h-[5vh] w-[5vh] rounded-[5px] ml-[0.5vw] my-[30px]  bg-[white] text-[#0D2B56] flex justify-center items-center font-bold'>E</Link>
                 </div>
                 <FiX onClick={onClose} className='md:text-[6vw] text-[9vw] lg:hidden flex'/>
             </div>
-            <div className="space-y-6 cursor-pointer">
+            <div className="space-y-[3.5vh] md:space-y-[3vh] cursor-pointer">
                 {items.map((item, index) => (
                     <Link to={item.link} key={index} className="flex items-center space-x-3 px-2 hover:bg-[#17417B] rounded-md py-2 transition-all duration-200">
-                        <div className="text-white text-[40px]">{item.icon}</div>
-                        <span className="text-[20px] font-medium lg:whitespace-nowrap lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300">
+                        <div className="text-white text-[4.5vh] md:text-[3.8vh] lg:text-[4.5vh]">{item.icon}</div>
+                        <span className="md:text-[2.5vw] lg:text-[1.1vw] text-[5vw] font-medium lg:whitespace-nowrap lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300">
                             {item.label}
                         </span>
                     </Link>
@@ -52,8 +52,8 @@ const Sidebar = ({onClose}) => {
             <div className="flex-grow"></div>
              <div className="space-y-6 cursor-pointer">
                     <div onClick={logout} className="flex items-center space-x-3 px-2 hover:bg-[#17417B] rounded-md py-2 transition-all duration-200">
-                        <div className="text-white text-[40px]"><IoLogOutSharp /></div>
-                        <span className="text-[20px] font-medium  lg:whitespace-nowrap lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300">
+                        <div className="text-white text-[4.5vh] md:text-[3.8vh] lg:text-[4.5vh]"><IoLogOutSharp /></div>
+                        <span className="md:text-[2.5vw] lg:text-[1.1vw] text-[5vw] font-medium  lg:whitespace-nowrap lg:opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300">
                             LOG OUT
                         </span>
                     </div>

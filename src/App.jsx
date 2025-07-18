@@ -39,11 +39,7 @@ export default function App() {
         <Route path="/career-recommendation" element={<RecommendationPage />} />
         <Route path="/explore-courses" element={<CoursePage />} />
         <Route path="/explore-universities" element={<UniversityPage />} />
-
-
         {/* <Route path="/login" element={<LoginTest />} /> */}
-       
-
       </Routes>
     </Router>
     </AuthProvider>

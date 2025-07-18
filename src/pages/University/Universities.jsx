@@ -61,11 +61,11 @@ const ExploreUniversities = () => {
             >
               <RiCloseCircleLine />
             </button>
-            <img src={selectedUniversity.image} alt="university" className="w-full h-[30vh] lg:h-[400px] object-fill" />
+            <img src={selectedUniversity.image} alt="university" className="w-full h-[30vh] lg:h-[40vh] object-fill" />
             <div className='px-[15px] md:px-[30px] gap-[10px] flex flex-col'>
               <h2 className="md:text-[2.5vw] lg:text-[1.1vw] text-[5.5vw] font-bold">{selectedUniversity.institution}</h2>
               <p className="text-[#4B5563] md:text-[2.3vw] lg:text-[0.9vw] text-[4.5vw]">{selectedUniversity.address}</p>
-              <p className="md:text-[2.3vw] lg:text-[0.9vw] text-[4vw] leading-[24px] text-[#374151] mt-[20px] lg:mt-[40px] mb-[30px] lg:mb-[40px]">{selectedUniversity.about}</p>
+              <p className="md:text-[2.3vw] lg:text-[0.9vw] text-[4vw] leading-[24px] text-[#374151] mt-[20px] lg:mt-[2vh] mb-[30px] lg:mb-[2vh]">{selectedUniversity.about}</p>
               <a className='md:text-[2.3vw] lg:text-[0.9vw] text-[4vw] leading-[24px] text-blue-600 font-bold' href={selectedUniversity.website}>Visit School Website</a>
             </div>
           </div>
@@ -96,11 +96,11 @@ const ExploreUniversities = () => {
           </Space>
         </div>
 
-        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 w-full gap-[16px] py-[30px] justify-between items-center'>
+        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 w-full gap-[16px] lg:gap-[0.7vw] py-[30px] justify-between items-center'>
           {filteredUniversities.length > 0 ? (
             filteredUniversities.map((u, index) => (
               <div key={index} className='w-[98%] rounded-[20px] overflow-hidden pb-[25px] shadow-lg gap-[15px] flex flex-col'>
-                <div className='w-full h-[300px]'>
+                <div className='w-full h-[32vh]'>
                   <img src={u.image} className='w-full h-full object-fill' alt={u.institution} />
                 </div>
                 <div className='px-[30px] gap-[20px] flex flex-col'>

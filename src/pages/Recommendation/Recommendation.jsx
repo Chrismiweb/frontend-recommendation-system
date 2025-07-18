@@ -17,7 +17,7 @@ function Recommendation() {
               setShowSidebar(false); // close sidebar
           };
   return (
-    <div className='flex flex-col pt-[30px] gap-[20vh] lg:pt-[239px]'>
+    <div className='flex flex-col pt-[30px] gap-[20vh] lg:pt-[25vh]'>
         <div className='flex lg:hidden w-full justify-end'>
             <div>
                 {!showSidebar && (

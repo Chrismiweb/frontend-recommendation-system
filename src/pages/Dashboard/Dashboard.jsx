@@ -187,10 +187,10 @@ const event = [
                 </div>
                 {/* <a href='#' className='text-[#2563EB] font-bold px-[20px] text-[20px] py-[15px] rounded-[10px] cursor-pointer'>View All {">"}</a> */}
             </div>
-            <div className='flex flex-col md:grid md:grid-cols-2 lg:flex lg:flex-row w-[100%] gap-[20px] md:gap-[15px] justify-between items-center'>
+            <div className='flex flex-col md:grid md:grid-cols-2  lg:flex lg:flex-row w-[100%] gap-[20px] md:gap-[15px] justify-between items-center'>
                 {recommendedCourses.map((r, index)=>(
-                    <div key={index} className='w-[95%] md:w-[95%] lg:w-[24%] rounded-[20px] overflow-hidden pb-[25px] shadow-lg gap-[15px] flex flex-col'>
-                        <div className='w-[100%] h-[300px]'>
+                    <div key={index} className='w-[95%] md:w-[95%] lg:w-[24%] lg:h-[50vh] rounded-[20px] overflow-hidden pb-[25px] shadow-lg gap-[15px] flex flex-col'>
+                        <div className='w-[100%] h-[32vh]'>
                             <img src={r.image} className='w-full h-full object-fill' alt="" />
                         </div>
                         <div className='px-[15px] md:px-[30px] gap-[20px] flex flex-col'>
@@ -209,8 +209,8 @@ const event = [
                     </div>
                 ))}
 
-                <Link to='/explore-courses' className='w-[95%] md:w-[95%] lg:w-[24%] h-[440px] rounded-[20px] gap-[8px] shadow-2xl justify-center items-center flex cursor-pointer '>
-                    <p className='flex items-center text-[#2563EB] hover:text-[#003fc7] text-[24px] font-semibold'>View More Courses </p>
+                <Link to='/explore-courses' className='w-[95%] md:w-[95%] lg:w-[24%] h-[50vh] rounded-[20px] gap-[8px] shadow-2xl justify-center items-center flex cursor-pointer '>
+                    <p className='flex items-center text-[#2563EB] hover:text-[#003fc7] md:text-[2.5vw] lg:text-[1.1vw] text-[5.5vw] font-semibold'>View More Courses </p>
                     <FaArrowRightLong className='text-[#2563EB] hover:text-[#003fc7] text-[24px]'/>
                 </Link>
             </div>
@@ -229,7 +229,7 @@ const event = [
             <div className='flex flex-col lg:flex lg:flex-row w-[100%] justify-between gap-[20px] md:gap-[10px] items-center'>
                 {topInstitutions.map((t, indexx)=>(
                     <div key={indexx} className='w-[95%] md:w-[95%] lg:w-[32%] rounded-[10px] lg:rounded-[20px] overflow-hidden pb-[25px] shadow-lg gap-[15px] flex flex-col'>
-                        <div className='w-[100%] h-[300px]'>
+                        <div className='w-[100%] h-[32vh]'>
                             <img src={t.image} className='w-full h-full object-fill' alt="" />
                         </div>
                         <div className='px-[15px] md:px-[30px] gap-[25px] flex flex-col'>

@@ -207,7 +207,7 @@ const handlePrevQuestion = () => {
               <Sidebar onClose={handleCloseSidebar} />
           )}
     </div>
-    <div className="w-[100%] flex flex-col justify-center items-center pt-[40px] lg:pt-[96px]">
+    <div className="w-[100%] flex flex-col justify-center items-center pt-[40px] lg:pt-[10vh]">
       <ToastContainer />
 
       <h1 className="md:text-[4vw] lg:text-[2vw] text-[6vw] mb-[10px] text-center">Discover Your Ideal Career Path</h1>

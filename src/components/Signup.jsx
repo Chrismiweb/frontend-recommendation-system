@@ -78,19 +78,19 @@ export function SignUpPage() {
           </Link>
       </div>
       <div className="w-full flex">
-          <div className="hidden lg:flex h-screen w-[50%]">
-              <img src="/image/study.jpg" className="w-full h-full object-cover brightness-50" alt="" />
+          <div className=" hidden lg:flex h-screen w-[50%]">
+              <img src="/image/study.jpg" className=" w-full h-full object-cover brightness-50" alt="" />
           </div>
-          <div className="bg-white w-full lg:w-[50%] h-screen px-[20px] md:px-[100px] lg:px-[120px] xl:px-[150px] flex flex-col justify-start items-start pt-[100px]">
+          <div className="bg-white w-full lg:w-[50%] h-screen px-[20px] md:px-[100px] lg:px-[6vw] flex flex-col justify-start items-start pt-[100px] overflow-y-scroll pb-[50px]">
             <h2 className="text-[#2563EB] lg:text-[2.3vw] md:text-[5vw] text-[6.5vw] font-semibold text-center">Sign up a new account</h2>
             <p className="text-center text-gray-500 mt-4 lg:text-[1.1vw] md:text-[2.9vw] text-[4.5vw]" >
                   Already have an account? <Link to ="/login" className="text-[#2563EB] font-semibold">Log in</Link>
             </p>
-            <form className=" w-full mt-[20px] flex flex-col gap-[24px]" onSubmit={handleSignUp}>
+            <form className=" w-full mt-[1vh] flex flex-col gap-[3vh]" onSubmit={handleSignUp}>
               {["firstName", "lastName", "userName", "email"].map((name, index) => (
                 <div key={index} className="flex items-center border-b border-[#2563EB] py-2 mt-4">
                   <span className="text-[#2563EB] mr-2">
-                    {name === "email" ? <FaEnvelope /> : <FaUser />}
+                    {name === "email" ? <FaEnvelope className="text-[2vh]"/> : <FaUser className="text-[2vh]" />}
                   </span>
                   <input
                     type="text"
@@ -102,11 +102,10 @@ export function SignUpPage() {
                   />
                 </div>
               ))}
-
               {/* Password Field */}
               <div className="flex items-center border-b border-[#2563EB] py-2 mt-4">
                 <span className="text-[#2563EB] mr-2">
-                  <FaLock />
+                  <FaLock className="text-[2vh]"/>
                 </span>
                 <input
                   type={showPassword ? "text" : "password"}
@@ -117,13 +116,13 @@ export function SignUpPage() {
                   onChange={handleChange}
                 />
                 <button type="button" onClick={() => setShowPassword(!showPassword)} className="ml-2 text-[#2563EB]">
-                  {showPassword ? <FaEyeSlash /> : <FaEye />}
+                  {showPassword ? <FaEyeSlash className="text-[2vh]"/> : <FaEye className="text-[2vh]"/>}
                 </button>
               </div>
 
               <div className="flex items-center border-b border-pink-300 py-2 mt-4">
                 <span className="text-[#2563EB] mr-2">
-                  <FaLock />
+                  <FaLock className="text-[2vh]"/>
                 </span>
                 <input
                   type={showConfirmPassword ? "text" : "password"}
@@ -134,12 +133,11 @@ export function SignUpPage() {
                   onChange={handleChange}
                 />
                 <button type="button" onClick={() => setShowConfirmPassword(!showConfirmPassword)} className="ml-2 text-[#2563EB]">
-                  {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
+                  {showConfirmPassword ? <FaEyeSlash className="text-[2vh]"/> : <FaEye className="text-[2vh]"/>}
                 </button>
               </div>
-
               <button className="w-full bg-[#2563EB] text-white p-2 rounded-lg mt-4 lg:text-[1vw] md:text-[2.7vw] text-[4.3vw] mb-[40px] md:mb-[10px]" disabled={loading}>
-                {loading ? <Loader /> : "Sign Up"}
+                {loading ? <Loader/> : "Sign Up"}
               </button>
             </form>
           </div>

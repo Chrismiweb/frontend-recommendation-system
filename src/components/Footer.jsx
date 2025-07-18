@@ -15,20 +15,20 @@ function Footer() {
 
             <div className='flex flex-col md:flex-row gap-[40px] md:gap-[120px] lg:gap-[8vw] mt-[50px] '>
                 <div className='flex flex-col gap-[7px] lg:gap-[10px]'>
-                    <h4 class=" lg:mb-2 text-[23px] font-bold">Learn More</h4>
+                    <h4 class=" lg:mb-2 md:text-[2.5vw] lg:text-[1.2vw] text-[5.5vw] font-bold">Learn More</h4>
                     <p className='lg:text-[1vw] md:text-[2.3vw] text-[4vw] text-[#9CA3AF] cursor-pointer font-semibold'>How it Works</p>
                     <p className='lg:text-[1vw] md:text-[2.3vw] text-[4vw] text-[#9CA3AF] cursor-pointer font-semibold'>Why Choose Us</p>
                     <p className='lg:text-[1vw] md:text-[2.3vw] text-[4vw] text-[#9CA3AF] cursor-pointer font-semibold'>About</p>
                 </div>
 
                 <div className='flex flex-col gap-[7px] lg:gap-[10px]'>
-                    <h4 class="lg:mb-2 text-[23px] font-bold">Account</h4>
+                    <h4 class="lg:mb-2 md:text-[2.5vw] lg:text-[1.2vw] text-[5.5vw] font-bold">Account</h4>
                     <p className='lg:text-[1vw] md:text-[2.3vw] text-[4vw] text-[#9CA3AF] cursor-pointer font-semibold'>Register</p>
                     <p className='lg:text-[1vw] md:text-[2.3vw] text-[4vw] text-[#9CA3AF] cursor-pointer font-semibold'>Login</p>
                 </div>
 
                 <div className='flex flex-col gap-[7px] lg:gap-[10px]'>
-                    <h4 class="lg:mb-2 text-[23px] font-bold">Explore</h4>
+                    <h4 class="lg:mb-2 md:text-[2.5vw] lg:text-[1.2vw] text-[5.5vw] font-bold">Explore</h4>
                     <p className='lg:text-[1vw] md:text-[2.3vw] text-[4vw] text-[#9CA3AF] cursor-pointer font-semibold'>Dashboard</p>
                     <p className='lg:text-[1vw] md:text-[2.3vw] text-[4vw] text-[#9CA3AF] cursor-pointer font-semibold'>Career Recommendation</p>
                     <p className='lg:text-[1vw] md:text-[2.3vw] text-[4vw] text-[#9CA3AF] cursor-pointer font-semibold'>Explore Courses</p>

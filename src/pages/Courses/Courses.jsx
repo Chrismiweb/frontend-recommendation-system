@@ -58,14 +58,14 @@ const RecommendedCourses = () => {
             >
               <RiCloseCircleLine />
             </button>
-            <img src={selectedCourse.image} alt="course" className="w-full h-[30vh]  lg:h-[400px] object-fill" />
+            <img src={selectedCourse.image} alt="course" className="w-full h-[30vh]  lg:h-[40vh] object-fill" />
            <div className='px-[15px] md:px-[30px] gap-[10px] flex flex-col'>
               <h2 className="md:text-[2.5vw] lg:text-[1.1vw] text-[5.5vw] font-bold">{selectedCourse.title}</h2>
               <div className='flex justify-between items-center'>
                 <p className="text-[#4B5563] md:text-[2.3vw] lg:text-[0.9vw] text-[4.5vw]">{selectedCourse.institution}</p>
                 <p className="text-[#4B5563] md:text-[2.3vw] lg:text-[0.9vw] text-[4.5vw]">{selectedCourse.duration}</p>
               </div>
-              <p className="md:text-[2.3vw] lg:text-[0.9vw] text-[4vw] leading-[24px] text-[#374151] mt-[20px] lg:mt-[40px]">{selectedCourse.about}</p>
+              <p className="md:text-[2.3vw] lg:text-[0.9vw] text-[4vw] leading-[24px] text-[#374151] mt-[20px] lg:mt-[2vh]">{selectedCourse.about}</p>
            </div>
           </div>
         </div>
@@ -102,11 +102,11 @@ const RecommendedCourses = () => {
           </Space>
         </div>
 
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 w-full gap-[16px] py-[30px] justify-between items-center'>
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 w-full gap-[16px] lg:gap-[0.7vw] py-[30px] justify-between items-center'>
           {filteredCourses.length > 0 ? (
               filteredCourses.map((r, index) => (
-                <div key={index} className='w-full lg:w-[95%] rounded-[20px] overflow-hidden pb-[25px] shadow-lg gap-[15px] flex flex-col'>
-                  <div className='w-full h-[300px]'>
+                <div key={index} className='w-full lg:w-[95%] lg:h-[50vh] rounded-[20px] overflow-hidden pb-[25px] shadow-lg gap-[15px] flex flex-col'>
+                  <div className='w-full h-[32vh]'>
                     <img src={r.image} className='w-full h-full object-fill' alt="" />
                   </div>
                   <div className='px-[15px] md:px-[30px] gap-[20px] flex flex-col'>
