@@ -23,22 +23,35 @@ export default function App() {
     <AuthProvider>
     <Router>
       <Routes>
-        <Route path="/result" element={<ResultPage />} />
-        {/* <Route path="/home" element={<HomeTest />} /> */}
-        <Route path="/login" element={<LoginPage />} />
-        {/* <Route path="/" element={<LandingPage />} /> */}
+        {/* <Route path="/navbar" element={<Navbar />} /> */}
         <Route path="/" element={<HomePage />} />
-        <Route path="/navbar" element={<Navbar />} />
+        <Route path="/result" element={<ResultPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/signup" element={<SignUpPage />} />
+        
+        {/* protected routes */}
         <Route path="/dashboard" element={
           <ProtectedRoute>
               <DashboardPage />
           </ProtectedRoute>
           } />
-        <Route path="/signup" element={<SignUpPage />} />
-        <Route path="/sidebar" element={<Sidebar />} />
-        <Route path="/career-recommendation" element={<RecommendationPage />} />
-        <Route path="/explore-courses" element={<CoursePage />} />
-        <Route path="/explore-universities" element={<UniversityPage />} />
+          <Route path="/career-recommendation" element={
+            <ProtectedRoute>
+                <RecommendationPage />
+            </ProtectedRoute>
+          } />
+          <Route path="/explore-courses" element={
+            <ProtectedRoute>
+                <CoursePage />
+            </ProtectedRoute>
+          } />
+          <Route path="/explore-universities" element={
+            <ProtectedRoute>
+                <UniversityPage />
+            </ProtectedRoute>
+          } />
+
+        {/* <Route path="/explore-universities" element={<UniversityPage />} /> */}
         {/* <Route path="/login" element={<LoginTest />} /> */}
       </Routes>
     </Router>
